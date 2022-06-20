@@ -32,4 +32,5 @@ public class TpShopMvcApp implements CommandLineRunner  {
 	public String index() {
 	return "index";
 	}
+	//
 }
