@@ -19,12 +19,13 @@ import lombok.ToString;
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class Article implements Serializable {
+	private static final long serialVersionUID = 1L; 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 private Long id;
 	
 @NotNull
 @Size(min=1,max=20)
-private String Brand;
+private String brand;
 
 @NotNull
 @Size(min=2,max=20)
@@ -41,7 +42,7 @@ private Category category;
 
 public Article(String description, String brand, double price) {
 	this.description = description;
-	this.setBrand(brand);
-	this.setPrice(price);
+	this.brand = brand;
+	this.price = price;
 }
 }

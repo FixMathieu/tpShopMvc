@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<title>Ajout article</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+	<div layout:fragment="content">
+		<div class="container">
+			<div class="col-md-4 col-xs-8">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Saisir un nouvel article</div>
+					<div class="panel-body">
+						<form th:action="@{/save}" method="POST">
+							<div class="form-group">
+								<label class="control-label">Marque</label> <input
+									class="form-control" type="text" name="brand"
+									th:value="${article.brand}"> <span
+									th:errors="${article.brand}"></span>
+
+							</div>
+							<div class="form-group">
+								<label class="control-label">Description</label> <input
+									class="form-control" type="text" name="description"
+									th:value="${article.description}"> <span
+									th:errors="${article.description}"></span>
+
+							</div>
+							<div class=" form-group">
+								<label class="control-label">Price</label> <input
+									class="form-control" type="text" name="price"
+									th:value="${article.price}"> <span
+									th:errors="${article.price}"></span>
+
+							</div>
+							<div class=" form-group">
+								<label class="control-label">Categories</label>
+							</div>
+							<ul class="nav nav-pills" th:each="c:${listCategory}">
+								<li><a href="#" th:text="${c.name}"></a></li>
+							</ul>
+							<button type="submit" class="btn btn-primary">Save</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+	</div>
+
+
+
+</body>
+</html>
