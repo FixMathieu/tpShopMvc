@@ -11,9 +11,9 @@ import fr.fms.entities.Category;
 public interface IBusiness {
 
 	public List<Article> getAllArticles();
-	public void createArticle(String description, String brand, double price,int quantity,Category category);
+	public void createArticle(String description, String brand, double price,int quantity,Category category, String image);
 	public void deleteArticleById(Long id);
-	public void updateArticle(Long id, String description, String brand, double price, int quantity, String catName);
+	public void updateArticle(Long id, String description, String brand, double price, int quantity, String catName, String image);
 	Page<Article> getArticlesPages(Pageable pageable) throws Exception;
 	
 	public List<Category> getAllCategories();

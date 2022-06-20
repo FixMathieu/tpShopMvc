@@ -39,7 +39,8 @@ public class ArticleController {
 	@GetMapping("/articles")
 	public String articles(Model model,@RequestParam(name="page", defaultValue="0")int page,
 									@RequestParam(name="keyword", defaultValue="")String kw,
-									@RequestParam(name="catId",defaultValue="1")long catId){
+									@RequestParam(name="catId",defaultValue="1")long catId,
+									@RequestParam(name="isAdmin",defaultValue="false")String isAdmin){
 		Page<Article> articles= articleRepository.findByDescriptionContains(kw,PageRequest.of(page, 5));
 		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
 		List<Category> category= categoryRepository.findAll();
@@ -48,6 +49,7 @@ public class ArticleController {
 		model.addAttribute("listArticle",articles.getContent());
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage",page);
+		model.addAttribute("isAdmin",isAdmin);
 		return "articles";
 	}
 

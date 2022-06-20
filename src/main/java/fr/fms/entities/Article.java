@@ -39,6 +39,8 @@ private int quantity;
 @ManyToOne
 private Category category;
 
+private String image;
+
 
 public Article(String description, String brand, double price) {
 	this.description = description;

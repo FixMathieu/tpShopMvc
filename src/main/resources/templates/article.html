@@ -39,15 +39,17 @@
 							</div>
 							<div class="from-group">
 								<label class="control-label">Categorie</label> <select
-									class="form-control" name="category" th:value="${article.category}">
+									class="form-control" name="category"
+									th:value="${article.category}">
 									<option selected>Choisir...</option>
 									<option th:each="c:${listCategory}"><a
-										th:text="${c.name}"></a></option>
+											th:text="${c.name}"></a></option>
 								</select>
-						</div>
-							<ul class="nav nav-pills" th:each="c:${listCategory}">
-								<li><a href="#" th:text="${c.name}"></a></li>
-							</ul>
+							</div>
+							<div class="form-group">
+								<label for="variableImage" >Charger image</label> <input
+									type="file" class="form-control-file" id="variableImage">
+							</div>
 							<button type="submit" class="btn btn-primary">Save</button>
 						</form>
 					</div>
