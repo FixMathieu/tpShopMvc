@@ -32,4 +32,5 @@ public class SpringStockMvcSecApplication implements CommandLineRunner  {
 	public String index() {
 	return "index";
 	}
+	//
 }
