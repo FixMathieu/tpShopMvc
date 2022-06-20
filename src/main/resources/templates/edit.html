@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html 	xmlns:th = "http://tymeleaf.org"
+		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+		layout:decorate= "layout">
+<head>
+<meta charset="UTF-8">
+<title>Update article</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+</head>
+<body>
+<div layout:fragment="content">
+	<div class="container">
+	<div class="col-md-4 col-xs-8">
+			<div class="panel panel-primary">
+				<div class="panel-heading">Modifier l'article</div>
+				<div class="panel-body">
+					<form th:action="@{/update}" method="POST" th:object="${article}" >
+						
+						<div class="form-group">
+							<label class="control-label" >id : </label>
+							<label th:text=${article.id}></label>
+							<input class="form-control" type="hidden" name="id" th:value="${article.id}" >
+								
+							<span th:errors="${article.brand}"></span>						
+						</div>
+						
+						<div class="form-group">
+							<label class="control-label">Marque</label>
+							<input class="form-control" type="text" name="brand" th:value="${article.brand}" >
+							<span th:errors="${article.brand}"></span>
+						
+						</div>
+						<div class="form-group">
+							<label class="control-label">Description</label>
+							<input class="form-control" type="text" name="description" th:value="${article.description}" >
+							<span th:errors="${article.description}"></span>
+					
+						</div>
+						<div class=" form-group">
+							<label class="control-label">Price</label>
+							<input class="form-control" type="text" name="price" th:value="${article.price}" >
+							<span th:errors="${article.price}"></span>
+							
+						</div>
+						<button type="submit" class="btn btn-primary">Save</button>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>
+	
+
+
+</body>
+</html>
