@@ -11,5 +11,6 @@ import fr.fms.entities.Category;
 
 public interface CategoryRepository extends JpaRepository<Category, Long>  {
 	public List<Category> deleteById(long id);
+	public Category findByName(String name);
 	Page<Category> findByNameContains(String name, Pageable pageable);
 }

@@ -22,4 +22,13 @@ private Long id;
 
 	@OneToMany(mappedBy ="category")
 	private Collection<Article> articles;
+	
+	public Category(String name) {
+		this.name=name;
+	}
+
+	public Category(Long id, String name) {
+		this.id=id;
+		this.name=name;
+	}
 }

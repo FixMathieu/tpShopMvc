@@ -31,7 +31,7 @@ public class IBusinessImpl implements IBusiness{
 	
 	@Override
 	public void createArticle(String description, String brand, double price,int quantity,Category category) {
-		articleRepository.save(new Article(new Article(description,brand,price,quantity,category));
+		articleRepository.save(new Article(null,description,brand,price,quantity,category));
 	}
 	
 	@Override
@@ -40,8 +40,8 @@ public class IBusinessImpl implements IBusiness{
 	}
 	
 	@Override
-	public void updateArticle(Long id, String description, String brand, double price, String catName) {
-		articleRepository.save(new Article(id,description,brand,price,categoryRepository.findByName(catName)));
+	public void updateArticle(Long id, String description, String brand, double price, int quantity, String catName) {
+		articleRepository.save(new Article(id,description,brand,price,quantity,categoryRepository.findByName(catName)));
 	}
 	
 	@Override
