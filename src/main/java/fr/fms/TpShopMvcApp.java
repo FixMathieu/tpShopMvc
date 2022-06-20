@@ -12,7 +12,7 @@ import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 
 @SpringBootApplication
-public class SpringStockMvcSecApplication implements CommandLineRunner  {
+public class TpShopMvcApp implements CommandLineRunner  {
 	@Autowired
 	CategoryRepository categoryRepository;
 
@@ -20,7 +20,7 @@ public class SpringStockMvcSecApplication implements CommandLineRunner  {
 	ArticleRepository articleRepository;
 
 	public static void main(String[] args) {
-		SpringApplication.run(SpringStockMvcSecApplication.class, args);
+		SpringApplication.run(TpShopMvcApp.class, args);
 	}
 
 	@Override
