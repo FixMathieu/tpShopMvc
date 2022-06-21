@@ -25,11 +25,11 @@ private Long id;
 	
 @NotNull
 @Size(min=1,max=20)
-private String brand;
+private String description;
 
 @NotNull
 @Size(min=2,max=20)
-private String description;
+private String brand;
 
 @DecimalMin("50")
 private double price;

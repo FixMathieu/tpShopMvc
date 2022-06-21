@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html 	xmlns:th = "http://tymeleaf.org"
 		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+		
 <head>
 <meta charset="UTF-8">
 <title>Layout</title>
@@ -8,11 +10,13 @@
 <link rel="stylesheet" 	href="../static/css/styles.css"			th:href="@{css/styles.css}">
 </head>
 
-<body>
+<body class="bg-image" 
+     style="background-image: url('https://www.codeur.com/tuto/wp-content/uploads/2022/01/pexels-roberto-nickson-2559941-1.jpg');
+            height: 100vh">
 	<nav class="navbar navbar-primary">
 		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand " href="#">Mon site demo</a>
+			<a class="navbar-brand " href="#">Pignonline</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a th:href="@{/index}">Accueil</a></li>
