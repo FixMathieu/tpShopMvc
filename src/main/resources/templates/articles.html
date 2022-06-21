@@ -10,99 +10,96 @@
 </head>
 <body>
 	<div layout:fragment="content">
-
-
-
 		<div class="container">
-
-			<div class="form-check">
-				<input class="form-check-input" type="checkbox" value=""
-					id="flexCheckDefault"> <label class="form-check-label"
-					for="flexCheckDefault"> Default checkbox </label>
-			</div>
-
-			<div class="row  ">
-				<div class="col-1 justify-content-between" style="display: flex">
-					<ul class="nav nav-pills" th:each="c:${listCategory}">
-						<li><a th:text="${c.name}"
-							th:href="@{/articles(catId=${c.id}, page=${currentPage}, keyword=${keyword})}"></a></li>
-						<!-- 						th:value="catId=${c.id})}" -->
-						<!-- 						th:href="@{/articles(catId=${c.id})}" -->
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<a class="navbar-brand"
+							th:href="@{/articles(page=0,keyword=${keyword})}">Tous les
+							articles</a>
+					</div>
+					<ul class="nav navbar-nav" th:each="c:${listCategory}">
+						<li th:class="${c.id==category}?'active':''"><a
+							th:text="${c.name}"
+							th:href="@{/articles(page=0 , keyword=${''}, category=${c.id})}">
+						</a></li>
 					</ul>
 				</div>
+			</nav>
+		
+		<div class="panel panel-primary">
+			<div class="panel-heading">List articles</div>
 
+		</div>
+		<div class="row">
+			<div class="col-sm-10">
+				<form th:action="@{/articles}" method="get">
+
+					<label>Keyword :</label> <input type="text" name="keyword"
+						th:value="${keyword}">
+					<button type="submit" class="btn btn-primary">Search</button>
+				</form>
 			</div>
-
-			<div class="panel panel-primary">
-				<div class="panel-heading">List articles</div>
-
+			<div class="col-sm-2">
+				<a class="btn btn-success" th:href="@{/article}"> Ajouter
+					article </a>
 			</div>
-			<div class="row">
-				<div class="col-sm-10">
-					<form th:action="@{/index}" method="get">
-						<label>Keyword :</label> <input type="text" name="keyword"
-							th:value="${keyword}">
-						<button type="submit" class="btn btn-primary">Search</button>
-					</form>
-				</div>
-				<div class="col-sm-2">
-					<a class="btn btn-success" th:href="@{/article}"> Ajouter
-						article </a>
-				</div>
-			</div>
-			<table class="table">
-				<tr>
-					<th>Id</th>
-					<th>Marque</th>
-					<th>Description</th>
-					<th>Prix</th>
-					<th>Quantité</th>
-					<th>Catégorie</th>
-					<th>Action(s)</th>
-
-				</tr>
-				<tr th:each="a:${category}">
-					<td th:text="${a.id}"></td>
-					<td th:text=${a.brand}></td>
-					<td th:text="${a.description}"></td>
-					<td th:text="${a.price}"></td>
-					<td th:text="${a.quantity}"></td>
-					<td th:text="${a.category.name}"></td>
-					<td> <img class="picture" alt="coucou" src="../static/images/boutique.jpg" th:src="@{images/boutique.jpg}"></td>
-					<td><a th:if="${isAdmin}" class="btn btn-danger"
-						th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
-						<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a></td>
-				</tr>
-
-			</table>
-			<ul class="nav nav-pills">
-				<li th:class="${currentPage==status.index}?'active':''"
-					th:each="page,status:${pages}"><a
-					th:href="@{/articles(page=${status.index},keyword=${keyword})}"
-					th:text="${status.index}"></a></li>
-			</ul>
-
 		</div>
+		<table class="table">
+			<tr>
+				<th>Id</th>
+				<th>Marque</th>
+				<th>Description</th>
+				<th>Prix</th>
+				<th>Quantité</th>
+				<th>Catégorie</th>
+				<th>Image</th>
+				<th>Action(s)</th>
 
-		<!-- ----------------------------------------------------------------------- -->
-		<div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios"
-				id="exampleRadios1" value="option1" checked> <label
-				class="form-check-label" for="exampleRadios1"> Droits Admin
-			</label>
-		</div>
-		<div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios"
-				id="exampleRadios2" value="option2"> <label
-				class="form-check-label" for="exampleRadios2"> Droits User </label>
-		</div>
-				<div class="form-check">
-			<input class="form-check-input" type="radio" name="exampleRadios"
-				id="exampleRadios2" value="option2"> <label
-				class="form-check-label" for="exampleRadios2"> Droits Visit </label>
-		</div>
-		<!-- ----------------------------------------------------------------------- -->
+			</tr>
+			<tr th:each="a:${listArticle}">
+				<td th:text="${a.id}"></td>
+				<td th:text=${a.brand}></td>
+				<td th:text="${a.description}"></td>
+				<td th:text="${a.price}"></td>
+				<td th:text="${a.quantity}"></td>
+				<td th:text="${a.category.name}"></td>
+				<td><img class="pictureArticles" style="width: 50px;"
+					alt="coucou" src="../static/images/boutique.jpg"
+					th:src="@{images/boutique.jpg}"></td>
+				<td><a th:if="${isAdmin}" class="btn btn-danger"
+					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
+					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a></td>
+			</tr>
+
+		</table>
+		<ul class="nav nav-pills">
+			<li th:class="${currentPage==status.index}?'active':''"
+				th:each="page,status:${pages}"><a
+				th:href="@{/articles(page=${status.index},keyword=${keyword},category=${category})}"
+				th:text="${status.index}"></a></li>
+		</ul>
+
 	</div>
 
+	<!-- ----------------------------------------------------------------------- -->
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="exampleRadios"
+			id="exampleRadios1" value="option1" checked> <label
+			class="form-check-label" for="exampleRadios1"> Droits Admin </label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="exampleRadios"
+			id="exampleRadios2" value="option2"> <label
+			class="form-check-label" for="exampleRadios2"> Droits User </label>
+	</div>
+	<div class="form-check">
+		<input class="form-check-input" type="radio" name="exampleRadios"
+			id="exampleRadios2" value="option2"> <label
+			class="form-check-label" for="exampleRadios2"> Droits Visit </label>
+	</div>
+	<!-- ----------------------------------------------------------------------- -->
+	</div>
+</div>
 </body>
 </html>

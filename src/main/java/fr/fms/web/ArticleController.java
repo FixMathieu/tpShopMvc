@@ -39,13 +39,21 @@ public class ArticleController {
 	@GetMapping("/articles")
 	public String articles(Model model,@RequestParam(name="page", defaultValue="0")int page,
 									@RequestParam(name="keyword", defaultValue="")String kw,
-									@RequestParam(name="catId",defaultValue="1")long catId,
-									@RequestParam(name="isAdmin",defaultValue="false")String isAdmin){
-		Page<Article> articles= articleRepository.findByDescriptionContains(kw,PageRequest.of(page, 5));
-		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
-		List<Category> category= categoryRepository.findAll();
-		model.addAttribute("listCategory",category);
-		model.addAttribute("category",articlesCat);
+									@RequestParam(name="category",defaultValue="-1")long catId,
+									@RequestParam(name="isAdmin",defaultValue="true")String isAdmin){
+		Page<Article> articles;
+
+		if(catId!=-1) {
+		articles = articleRepository.findByDescriptionContainsAndCategoryId(kw, catId, PageRequest.of(page, 5));
+		} else {
+		articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5));
+		}
+//		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
+		List<Category> categories= categoryRepository.findAll();
+		 model.addAttribute("keyword",kw);
+		 
+		model.addAttribute("listCategory",categories);
+		model.addAttribute("category",catId);
 		model.addAttribute("listArticle",articles.getContent());
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage",page);
