@@ -26,32 +26,36 @@ public class ArticleController {
 	CategoryRepository categoryRepository;
 	@Autowired
 	ArticleRepository articleRepository;
-	
+
 	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}
 	@GetMapping("/cart")
-	public String cart() {
+	public String cart(Model model,@RequestParam(name="page",defaultValue="0") int page) {
+		
+		Page<Article> articles = articleRepository.findByQuantityGreaterThan(0, PageRequest.of(page, 5));
+		model.addAttribute("listArticle",articles.getContent());
+		
 		return "cart";
 	}
-	
+
 	@GetMapping("/articles")
 	public String articles(Model model,@RequestParam(name="page", defaultValue="0")int page,
-									@RequestParam(name="keyword", defaultValue="")String kw,
-									@RequestParam(name="category",defaultValue="-1")long catId,
-									@RequestParam(name="isAdmin",defaultValue="true")String isAdmin){
+			@RequestParam(name="keyword", defaultValue="")String kw,
+			@RequestParam(name="category",defaultValue="-1")long catId,
+			@RequestParam(name="isAdmin",defaultValue="true")String isAdmin){
 		Page<Article> articles;
 
 		if(catId!=-1) {
-		articles = articleRepository.findByDescriptionContainsAndCategoryId(kw, catId, PageRequest.of(page, 5));
+			articles = articleRepository.findByDescriptionContainsAndCategoryId(kw, catId, PageRequest.of(page, 5));
 		} else {
-		articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5));
+			articles = articleRepository.findByDescriptionContains(kw, PageRequest.of(page, 5));
 		}
-//		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
+		//		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
 		List<Category> categories= categoryRepository.findAll();
-		 model.addAttribute("keyword",kw);
-		 
+		model.addAttribute("keyword",kw);
+
 		model.addAttribute("listCategory",categories);
 		model.addAttribute("category",catId);
 		model.addAttribute("listArticle",articles.getContent());
@@ -61,7 +65,7 @@ public class ArticleController {
 		return "articles";
 	}
 
-	
+
 	@GetMapping("/delete")
 	public String delete(Long id, int page, String keyword) {
 		articleRepository.deleteById(id);
@@ -82,18 +86,18 @@ public class ArticleController {
 	}
 	@GetMapping("/edit")
 	public String edit(Long id, Model model) {
-	List<Category> category= categoryRepository.findAll();
-	model.addAttribute("listCategory",category);
-	Article article = articleRepository.findById(id).get();
-	model.addAttribute("article", article);
+		List<Category> category= categoryRepository.findAll();
+		model.addAttribute("listCategory",category);
+		Article article = articleRepository.findById(id).get();
+		model.addAttribute("article", article);
 		return "edit";
-		
+
 	}
-	@PostMapping("/update")
-	public String update(@Valid  Article article, BindingResult bindingResult){
-		if(bindingResult.hasErrors()) return "article";
-		articleRepository.save(article);
-		return"redirect:/articles";
-	}
+	//	@PostMapping("/update")
+	//	public String update(@Valid  Article article, BindingResult bindingResult){
+	//		if(bindingResult.hasErrors()) return "article";
+	//		articleRepository.save(article);
+	//		return"redirect:/articles";
+	//	}
 
 }

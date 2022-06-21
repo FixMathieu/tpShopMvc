@@ -42,12 +42,11 @@
 									class="form-control" name="category"
 									th:value="${article.category}">
 									<option selected>Choisir...</option>
-									<option th:each="c:${listCategory}"
-											th:text="${c.name}"></option>
+									<option th:each="c:${listCategory}" th:text="${c.name}"></option>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="variableImage" >Charger image</label> <input
+								<label for="variableImage">Charger image</label> <input
 									type="file" class="form-control-file" id="variableImage">
 							</div>
 							<button type="submit" class="btn btn-primary">Save</button>
