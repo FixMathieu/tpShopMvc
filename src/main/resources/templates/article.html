@@ -42,8 +42,8 @@
 									class="form-control" name="category"
 									th:value="${article.category}">
 									<option selected>Choisir...</option>
-									<option th:each="c:${listCategory}"><a
-											th:text="${c.name}"></a></option>
+									<option th:each="c:${listCategory}"
+											th:text="${c.name}"></option>
 								</select>
 							</div>
 							<div class="form-group">

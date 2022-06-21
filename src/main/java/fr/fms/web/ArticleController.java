@@ -82,6 +82,8 @@ public class ArticleController {
 	}
 	@GetMapping("/edit")
 	public String edit(Long id, Model model) {
+	List<Category> category= categoryRepository.findAll();
+	model.addAttribute("listCategory",category);
 	Article article = articleRepository.findById(id).get();
 	model.addAttribute("article", article);
 		return "edit";
