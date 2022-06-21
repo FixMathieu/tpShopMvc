@@ -37,7 +37,7 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		Category tv = job.categoryRepository.save(new Category("TV"));
 		
 		job.articleRepository.save(new Article(null,"S8","Samsung",250,1,smartphone, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"S9","Samsung", 300,1,smartphone, "testimage1.png"));
+		job.articleRepository.save(new Article(null,"S9","Samsung", 300,1,smartphone, "testimage2.jpg"));
 		job.articleRepository.save(new Article(null,"iPhone 10","Apple",500,1,smartphone, "testimage1.png"));		
 		job.articleRepository.save(new Article(null,"MI11","Xiaomi",100,1,smartphone, "testimage1.png"));
 		job.articleRepository.save(new Article(null,"9 Pro","OnePlus",200,1,smartphone, "testimage1.png"));

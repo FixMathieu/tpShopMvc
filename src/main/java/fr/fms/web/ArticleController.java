@@ -69,12 +69,14 @@ public class ArticleController {
 	}
 	@PostMapping("/save")
 	public String save( @Valid  Article article, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) return "article";
+		if(bindingResult.hasErrors()) return "edit";
 		articleRepository.save(article);
 		return"redirect:/articles";
 	}
 	@GetMapping("/article")
 	public String article(Model model) {
+		List<Article> articles=articleRepository.findAll();
+		model.addAttribute ("listArticle",articles);
 		List<Category> category= categoryRepository.findAll();
 		model.addAttribute("listCategory",category);
 		model.addAttribute("article",new Article());
@@ -82,6 +84,8 @@ public class ArticleController {
 	}
 	@GetMapping("/edit")
 	public String edit(Long id, Model model) {
+		List<Article> articles=articleRepository.findAll();
+		model.addAttribute ("listArticle",articles);
 	List<Category> category= categoryRepository.findAll();
 	model.addAttribute("listCategory",category);
 	Article article = articleRepository.findById(id).get();
@@ -89,11 +93,6 @@ public class ArticleController {
 		return "edit";
 		
 	}
-	@PostMapping("/update")
-	public String update(@Valid  Article article, BindingResult bindingResult){
-		if(bindingResult.hasErrors()) return "article";
-		articleRepository.save(article);
-		return"redirect:/articles";
-	}
+
 
 }

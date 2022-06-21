@@ -25,11 +25,11 @@ private Long id;
 	
 @NotNull
 @Size(min=1,max=20)
-private String brand;
+private String description;
 
 @NotNull
-@Size(min=2,max=20)
-private String description;
+@Size(min=1,max=20)
+private String brand;
 
 @DecimalMin("50")
 private double price;
@@ -41,10 +41,24 @@ private Category category;
 
 private String image;
 
+public Article(String image) {
+	this.image=image;
+	
+}
 
-public Article(String description, String brand, double price) {
-	this.description = description;
+public Article(String brand,String description,  double price) {
 	this.brand = brand;
+	this.description = description;
 	this.price = price;
+	
+}
+
+public Article(String brand,String description,  double price,int quantity,Category category,String image) {
+	this.brand = brand;
+	this.description = description;
+	this.price = price;
+	this.quantity=quantity;
+	this.category=category;
+	this.image=image;
 }
 }

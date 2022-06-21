@@ -65,8 +65,9 @@
 				<td th:text="${a.quantity}"></td>
 				<td th:text="${a.category.name}"></td>
 				<td><img class="pictureArticles" style="width: 50px;"
-					alt="coucou" src="../static/images/boutique.jpg"
-					th:src="@{images/boutique.jpg}"></td>
+					alt="image" src="../static/images/+${a.image}" 
+					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
+					
 				<td><a th:if="${isAdmin}" class="btn btn-danger"
 					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
 					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a></td>

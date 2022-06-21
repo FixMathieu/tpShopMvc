@@ -37,18 +37,23 @@
 									th:errors="${article.price}"></span>
 
 							</div>
-							<div class="from-group">
+						<div class="from-group">
 								<label class="control-label">Categorie</label> <select
 									class="form-control" name="category"
 									th:value="${article.category}">
-									<option selected>Choisir...</option>
-									<option th:each="c:${listCategory}"
-											th:text="${c.name}"></option>
+									<option th:each="c:${listCategory}" th:text="${c.name}"
+										th:value="${c.id}"></option>
 								</select>
 							</div>
+
+
+						
 							<div class="form-group">
-								<label for="variableImage" >Charger image</label> <input
-									type="file" class="form-control-file" id="variableImage">
+								<label class="control-label">Image</label> <select
+									class="form-control" name="image" th:value="${article.image}">
+									<option th:each="a:${listArticle}" th:text="${a.image}" th:value="${a.image}">
+									</option>
+								</select>
 							</div>
 							<button type="submit" class="btn btn-primary">Save</button>
 						</form>
