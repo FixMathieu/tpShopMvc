@@ -69,7 +69,8 @@
 					th:src="@{images/boutique.jpg}"></td>
 				<td><a th:if="${isAdmin}" class="btn btn-danger"
 					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
-					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a></td>
+					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a>
+					<a class="btn btn-primary"></a></td>
 			</tr>
 
 		</table>

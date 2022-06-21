@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
+import fr.fms.entities.Cart;
 import fr.fms.entities.Category;
 
 
@@ -69,5 +70,15 @@ public class IBusinessImpl implements IBusiness{
 		return articleRepository.findAll(pageable);
 	}
 	
+	@Override
+	public Cart addToCart(Cart cart, Long id) {
+		
+		if(cart.content.get(id) != null) {
+		cart.content.put(id, cart.content.get(id)+1);
+		}else {
+			cart.content.put(id, 1);
+		}
+		return cart;
+	}
 
 }
