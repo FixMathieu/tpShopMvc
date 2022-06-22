@@ -1,6 +1,7 @@
 package fr.fms.web;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.validation.Valid;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
@@ -26,20 +28,38 @@ public class ArticleController {
 	CategoryRepository categoryRepository;
 	@Autowired
 	ArticleRepository articleRepository;
+	@Autowired
+	IBusinessImpl job;
 	
 	@GetMapping("/index")
 	public String index() {
 		return "index";
 	}
 	@GetMapping("/cart")
-	public String cart() {
+	public String cart(Model model) {
+		List<Article> articles = articleRepository.findAll();
+		List<Article> articlesInCart = articles.stream().filter(article->job.getCart().get(article.getId())!=null).collect(Collectors.toList());
+		
+		model.addAttribute("quantities", job.getCart());
+		
+		model.addAttribute("listArticle",articlesInCart);
 		return "cart";
 	}
 	
 	
 	
 	@GetMapping("/addCart")
-	public String addCart() {
+	public String addCart(Long id) {
+		
+		job.addToCart(id);
+		
+		return "redirect:/articles";
+	}
+	
+	@GetMapping("/removeCart")
+	public String removeCart(Long id) {
+		
+		job.removeFromCart(id);
 		
 		return "redirect:/cart";
 	}

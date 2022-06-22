@@ -32,7 +32,7 @@
 				<td th:text=${a.brand}></td>
 				<td th:text="${a.description}"></td>
 				<td th:text="${a.price}"></td>
-				<td th:text="${a.quantity}"></td>
+				<td th:text="${quantities.get(a.id)}"></td>
 				<td th:text="${a.category.name}"></td>
 				<td><img class="pictureArticles" style="width: 50px;"
 					alt="coucou" src="../static/images/boutique.jpg"

@@ -18,7 +18,7 @@ import fr.fms.entities.Category;
 @Service
 public class IBusinessImpl implements IBusiness{
 	@Autowired
-	public static HashMap<Long, Integer> cart;
+	public static HashMap<Long, Integer> cart = new HashMap<Long, Integer>();
 	
 	@Autowired
 	public ArticleRepository articleRepository;
