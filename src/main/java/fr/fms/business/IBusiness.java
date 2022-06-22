@@ -6,7 +6,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import fr.fms.entities.Article;
-import fr.fms.entities.Cart;
 import fr.fms.entities.Category;
 
 public interface IBusiness {
@@ -22,5 +21,5 @@ public interface IBusiness {
 	public void deleteCategoryById(Long id);
 	public void updateCategory(Long id, String name);
 	
-	public Cart addToCart(Cart cart,Long id);
+//	public Cart addToCart(Cart cart,Long id);
 }

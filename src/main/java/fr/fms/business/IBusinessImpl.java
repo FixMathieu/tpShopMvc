@@ -1,5 +1,6 @@
 package fr.fms.business;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
@@ -11,12 +12,14 @@ import org.springframework.stereotype.Service;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
-import fr.fms.entities.Cart;
 import fr.fms.entities.Category;
 
 
 @Service
 public class IBusinessImpl implements IBusiness{
+	
+	@Autowired
+	public static HashMap<Long, Integer> cart;
 	
 	@Autowired
 	public ArticleRepository articleRepository;
@@ -70,14 +73,33 @@ public class IBusinessImpl implements IBusiness{
 		return articleRepository.findAll(pageable);
 	}
 	
-	@Override
-	public Cart addToCart(Cart cart, Long id) {
+	/**
+	 * Ajoute un article au panier via l'ID de l'article
+	 * @param id de l'article à ajouter
+	 */
+	public void addToCart(Long id) {
 		
-		if(cart.content.get(id) != null) {
-		cart.content.put(id, cart.content.get(id)+1);
+		if(cart.get(id) != null) {
+		cart.put(id, cart.get(id)+1);
 		}else {
-			cart.content.put(id, 1);
+			cart.put(id, 1);
 		}
+	}
+	
+	/**
+	 * Retire un article au panier via l'ID de l'article
+	 * @param id de l'article à retirer
+	 */
+	public void removeFromCart(Long id) {
+		if(cart.get(id)>0) {
+			cart.put(id, cart.get(id)-1);
+		}
+	}
+	
+	/**
+	 * Renvoie le contenu du panier.
+	 */
+	public HashMap<Long, Integer> getCart() {
 		return cart;
 	}
 
