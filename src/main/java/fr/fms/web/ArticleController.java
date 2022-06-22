@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.User;
 
 
 @Controller
@@ -26,6 +28,9 @@ public class ArticleController {
 	CategoryRepository categoryRepository;
 	@Autowired
 	ArticleRepository articleRepository;
+	@Autowired
+	UserRepository userRepository;
+	
 	
 	@GetMapping("/index")
 	public String index() {
@@ -61,6 +66,18 @@ public class ArticleController {
 		return "articles";
 	}
 
+	@GetMapping("/login")
+	public String login(Model model) {
+		List<User> userList= userRepository.findAll();
+		model.addAttribute("users",userList);
+		return "login";
+	}
+	
+	// a faire
+	@PostMapping("/loginAction")
+	public String loginAction() {
+		return "redirect:/articles";
+	}
 	
 	@GetMapping("/delete")
 	public String delete(Long id, int page, String keyword) {
