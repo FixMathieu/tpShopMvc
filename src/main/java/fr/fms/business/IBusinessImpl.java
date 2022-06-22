@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.User;
 
 
 @Service
@@ -25,6 +27,9 @@ public class IBusinessImpl implements IBusiness{
 	
 	@Autowired
 	public CategoryRepository categoryRepository;
+	
+	@Autowired
+	public UserRepository userRepository;
 	
 	@Override
 	@PostConstruct
@@ -50,6 +55,11 @@ public class IBusinessImpl implements IBusiness{
 	@Override
 	public List<Category> getAllCategories(){
 		return categoryRepository.findAll();
+	}
+	
+	@Override
+	public List<User> getAllUsers(){
+		return userRepository.findAll();
 	}
 	
 	@Override
