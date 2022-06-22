@@ -20,4 +20,5 @@ public interface IBusiness {
 	public void createCategory(String name);
 	public void deleteCategoryById(Long id);
 	public void updateCategory(Long id, String name);
+	
 }

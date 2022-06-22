@@ -70,7 +70,10 @@
 					
 				<td><a th:if="${isAdmin}" class="btn btn-danger"
 					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
-					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a></td>
+					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a>
+					<a class="btn btn-ligth" th:href="@{/addCart(id=${a.id})}"> <img class="picturePanier-success" 
+					alt="image" src="../static/images/panier.jpg" th:src="@{images/panier.jpg}" height="15px" width="15px"/>  Add to cart   
+					</a></td>
 			</tr>
 
 		</table>

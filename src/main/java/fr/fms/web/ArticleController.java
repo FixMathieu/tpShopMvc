@@ -36,6 +36,14 @@ public class ArticleController {
 		return "cart";
 	}
 	
+	
+	
+	@GetMapping("/addCart")
+	public String addCart() {
+		
+		return "redirect:/cart";
+	}
+	
 	@GetMapping("/articles")
 	public String articles(Model model,@RequestParam(name="page", defaultValue="0")int page,
 									@RequestParam(name="keyword", defaultValue="")String kw,
