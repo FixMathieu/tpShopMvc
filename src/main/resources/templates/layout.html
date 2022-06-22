@@ -10,22 +10,32 @@
 <link rel="stylesheet" 	href="../static/css/styles.css"			th:href="@{css/styles.css}">
 </head>
 
-<body class="bg-image" 
-     style="background-image: url('https://www.codeur.com/tuto/wp-content/uploads/2022/01/pexels-roberto-nickson-2559941-1.jpg');
+<body class="body bg-image" 
+     style="background-image: url('https://wallpaperaccess.com/full/2677220.jpg');
             height: 100vh">
 	<nav class="navbar navbar-primary">
 		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand " href="#">Pignonline</a>
+			
+			<a class="navbar-brand " href="#" >Pignonline</a>
+			
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a th:href="@{/index}">Accueil</a></li>
-				<li><a th:href="@{/articles}">List articles</a></li>
+				<li class="active"><a th:href="@{/index}">HomePage</a></li>
+				<li><a th:href="@{/articles}">Articles list</a></li>
 				<li><a th:href="@{/article}">Article</a></li>
-				<li><a th:href="@{/cart}">Voir Panier</a></li>
+				<li><a th:href="@{/cart}">See cart</a></li>
 			</ul>
 		</div>
 	</nav>
-	<section layout:fragment="content"></section>
+	<section layout:fragment="content" style ="height:625px" ></section>
 </body>
+<footer id="footer" class="bg-dark text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-white text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    © 2022 Copyright:
+    <a class="text-white">ThePignons</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 </html>

@@ -13,12 +13,12 @@
 	<div class="container">
 	<div class="col-md-4 col-xs-8">
 			<div class="panel panel-primary">
-				<div class="panel-heading">Modifier l'article</div>
+				<div class="panel-heading">Modify article</div>
 				<div class="panel-body">
 					<form th:action="@{/update}" method="POST" th:object="${article}" >
 						
 						<div class="form-group">
-							<label class="control-label" >id : </label>
+							<label class="control-label" >Id : </label>
 							<label th:text=${article.id}></label>
 							<input class="form-control" type="hidden" name="id" th:value="${article.id}" >
 								
@@ -26,7 +26,7 @@
 						</div>
 						
 						<div class="form-group">
-							<label class="control-label">Marque</label>
+							<label class="control-label">Brand</label>
 							<input class="form-control" type="text" name="brand" th:value="${article.brand}" >
 							<span th:errors="${article.brand}"></span>
 						
@@ -44,7 +44,7 @@
 							
 						</div>
 							<div class="from-group">
-								<label class="control-label">Categorie</label> <select
+								<label class="control-label">Category</label> <select
 									class="form-control" name="category"
 									th:value="${article.category}">
 									
@@ -53,7 +53,7 @@
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="variableImage" >Charger image</label> <input
+								<label for="variableImage" >Select picture</label> <input
 									type="file" class="form-control-file" id="variableImage">
 							</div>
 						<button type="submit" class="btn btn-primary">Save</button>
