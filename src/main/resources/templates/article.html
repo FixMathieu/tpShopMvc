@@ -4,7 +4,7 @@
 	layout:decorate="layout">
 <head>
 <meta charset="UTF-8">
-<title>Ajout article</title>
+<title>Add article</title>
 <link rel="stylesheet" href="../static/css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}">
 </head>
@@ -13,11 +13,11 @@
 		<div class="container">
 			<div class="col-md-4 col-xs-8">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Saisir un nouvel article</div>
+					<div class="panel-heading">Type a new article</div>
 					<div class="panel-body">
 						<form th:action="@{/save}" method="POST">
 							<div class="form-group">
-								<label class="control-label">Marque</label> <input
+								<label class="control-label">Brand</label> <input
 									class="form-control" type="text" name="brand"
 									th:value="${article.brand}"> <span
 									th:errors="${article.brand}"></span>
