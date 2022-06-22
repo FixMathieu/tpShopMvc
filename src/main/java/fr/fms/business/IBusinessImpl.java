@@ -90,8 +90,10 @@ public class IBusinessImpl implements IBusiness{
 	 * @param id de l'article à retirer
 	 */
 	public void removeFromCart(Long id) {
-		if(cart.get(id)>0) {
+		if(cart.get(id)>1) {
 			cart.put(id, cart.get(id)-1);
+		}else if(cart.get(id)==1){
+			cart.remove(id);
 		}
 	}
 	
