@@ -142,4 +142,9 @@ public class ArticleController {
 	    }
 
 
+		
+		@GetMapping("/403")
+		public String refused() {
+			return "403";
+		}
 }

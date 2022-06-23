@@ -11,6 +11,12 @@
 	height:100%;
 	padding-left:100px;
 }
+
+.er-picture{
+	width:50%;
+	height:50%;
+}
+
 .category{
 	width:100%;
 	display:flex;

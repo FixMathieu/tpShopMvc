@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
-import fr.fms.entities.User;
 
 @SpringBootApplication
 public class TpShopMvcApp implements CommandLineRunner  {
@@ -67,11 +66,20 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		job.articleRepository.save(new Article(null,"L43","Philips",450,1,tv, "testimage1.png"));	
 		
 		
-		job.userRepository.save(new User(null,"Mathieu","Fix","Dax", "mathieu.fix@fms.com", 118218, "mf","ADMIN"));
-		job.userRepository.save(new User(null,"Tristan","Laclau","Bayonne", "tristan.laclau@fms.com", 118008, "tl", "USER"));
-		job.userRepository.save(new User(null,"Martial","Derand","St Paul", "martial.derand@fms.com", 118860, "md", "USER"));
-		job.userRepository.save(new User(null,"Eric","Mauler","St Geour", "eric.mauler@fms.com", 118109, "em", "USER"));
+//		job.userRepository.save(new User(null,"Mathieu","Fix","Dax", "mathieu.fix@fms.com", 118218, "mf","ADMIN"));
+//		job.userRepository.save(new User(null,"Tristan","Laclau","Bayonne", "tristan.laclau@fms.com", 118008, "tl", "USER"));
+//		job.userRepository.save(new User(null,"Martial","Derand","St Paul", "martial.derand@fms.com", 118860, "md", "USER"));
+//		job.userRepository.save(new User(null,"Eric","Mauler","St Geour", "eric.mauler@fms.com", 118109, "em", "USER"));
+//		
+//		job.userRepository.save(new User("Mathieu","fms2022","ADMIN",true));
+//		job.userRepository.save(new User("Tristan","fms2022","USER",true));
+//		job.userRepository.save(new User("Martial","fms2022","USER",true));
+//		job.userRepository.save(new User("Eric","fms2022","USER",true));
+//		
+//		job.roleRepository.save(new Role("USER"));
+//		job.roleRepository.save(new Role("ADMIN"));
 		
+
 	}
 	
 	@RequestMapping(value = "/")
