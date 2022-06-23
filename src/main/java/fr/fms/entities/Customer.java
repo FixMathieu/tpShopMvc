@@ -12,28 +12,19 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Category {
+public class Customer {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id;
-	private String name;
+	private String firstName;
+	private String lastName;
+	private String adress;
+	private String email;
+	private long phone;
 
-	@OneToMany(mappedBy ="category")
-	private Collection<Article> articles;
-	
-	public Category(String name) {
-		this.name=name;
-	}
+	@OneToMany(mappedBy ="customer")
+	private Collection<Order> orders;
 
-	public Category(Long id, String name) {
-		this.id=id;
-		this.name=name;
-	}
-
-	@Override
-	public String toString() {
-		return name ;
-	}
-	
 }

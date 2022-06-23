@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
@@ -14,26 +15,14 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Category {
+public class Order {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id;
-	private String name;
 
-	@OneToMany(mappedBy ="category")
+	@ManyToOne
+	private Customer customer;
+	
+	@OneToMany
 	private Collection<Article> articles;
-	
-	public Category(String name) {
-		this.name=name;
-	}
 
-	public Category(Long id, String name) {
-		this.id=id;
-		this.name=name;
-	}
-
-	@Override
-	public String toString() {
-		return name ;
-	}
-	
 }

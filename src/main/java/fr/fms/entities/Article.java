@@ -1,11 +1,13 @@
 package fr.fms.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
@@ -39,6 +41,9 @@ private int quantity;
 @ManyToOne
 private Category category;
 
+@ManyToOne
+private Order order;
+
 private String image;
 
 public Article(String image) {
@@ -60,5 +65,15 @@ public Article(String brand,String description,  double price,int quantity,Categ
 	this.quantity=quantity;
 	this.category=category;
 	this.image=image;
+}
+
+public Article(Long id, String brand, String description, double price, int quantity, Category category,
+		String image2) {
+	this.id=id;
+	this.brand=brand;
+	this.description=description;
+	this.price=price;
+	this.quantity=quantity;
+	this.category=category;
 }
 }

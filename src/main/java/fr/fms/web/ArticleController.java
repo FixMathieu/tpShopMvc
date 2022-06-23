@@ -29,6 +29,7 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Order;
 
 
 @Controller
@@ -132,6 +133,18 @@ public class ArticleController {
 	Article article = articleRepository.findById(id).get();
 	model.addAttribute("article", article);
 		return "edit";
+	}
+	
+	@GetMapping("/order")
+	public String order() {
+		
+		//PLACEHOLDER -> Need to convert cart to Order here
+		Order order = new Order();
+		
+		job.placeOrder(order);
+		
+		return "redirect:/articles";
+		
 	}
 	
 	

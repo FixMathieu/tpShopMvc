@@ -11,9 +11,11 @@ import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.OrderRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Order;
 import fr.fms.entities.User;
 
 
@@ -30,6 +32,9 @@ public class IBusinessImpl implements IBusiness{
 	
 	@Autowired
 	public UserRepository userRepository;
+	
+	@Autowired
+	public OrderRepository orderRepository;
 	
 	@Override
 	@PostConstruct
@@ -112,5 +117,14 @@ public class IBusinessImpl implements IBusiness{
 	 */
 	public HashMap<Long, Integer> getCart() {
 		return cart;
+	}
+	
+	/**
+	 * Enregistre la commande en base et vide le panier
+	 */
+	public void placeOrder(Order order) {
+		
+		orderRepository.save(order);
+		cart.clear();
 	}
 }
