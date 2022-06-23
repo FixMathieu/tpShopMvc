@@ -88,9 +88,9 @@ public class ArticleController {
 //		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
 		List<Category> categories= categoryRepository.findAll();
 		 model.addAttribute("keyword",kw);
-		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
-		 String currentUserCo = auth.getName();											// recupere son nom
-		 UserDetails userDetails = (UserDetails) auth.getPrincipal();					// recupere ses droits/roles
+//		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
+//		 String currentUserCo = auth.getName();											// recupere son nom
+//		 UserDetails userDetails = (UserDetails) auth.getPrincipal();					// recupere ses droits/roles
 		 
 		model.addAttribute("listCategory",categories);
 		model.addAttribute("category",catId);
@@ -98,7 +98,7 @@ public class ArticleController {
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage",page);
 		model.addAttribute("isAdmin",isAdmin);
-		model.addAttribute("auth",auth);								// verifie si un utilisateur est connecté ( "${auth!=null}" ) ou pas ( "${auth==null}" )
+//		model.addAttribute("auth",auth);								// verifie si un utilisateur est connecté ( "${auth!=null}" ) ou pas ( "${auth==null}" )
 		return "articles";
 	}
 

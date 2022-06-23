@@ -9,6 +9,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 
 import javax.sql.DataSource;
 
@@ -44,6 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	PasswordEncoder passwordEncoder() {
 		return new BCryptPasswordEncoder();
 	}
+
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
@@ -51,9 +53,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin();												//   --------------------------> page de login generée
 	
 	// Gestion des accès
-		http.authorizeRequests().antMatchers("/index","/cart","/addCart","/removeCart","/articles","/article","/delete","/save","/edit","/login","/test").hasRole("ADMIN");
-		http.authorizeRequests().antMatchers("/index","/cart","/addCart","/removeCart","/articles","/login","/test").hasRole("USER");
-
+		http.authorizeRequests().antMatchers("/index","/articles").permitAll();
+		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/article","/delete","/save","/edit","/login","/test").hasRole("ADMIN");
+		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/login","/test").hasRole("USER");
+//		
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée
 	}
 }
