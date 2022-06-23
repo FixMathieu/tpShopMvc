@@ -68,7 +68,7 @@
 					alt="image" src="../static/images/+${a.image}" 
 					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
 					
-				<td><a th:if="${isAdmin}" class="btn btn-danger"
+				<td><a class="btn btn-danger"
 					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
 					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a>
 					<a class="btn btn-ligth" th:href="@{/addCart(id=${a.id})}"> <img class="picturePanier-success" 
