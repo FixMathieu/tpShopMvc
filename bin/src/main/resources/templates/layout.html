@@ -1,6 +1,8 @@
 <!DOCTYPE html>
+
 <html 	xmlns:th = "http://tymeleaf.org"
-		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://ww.thymeleaf.org/extras/spring-security5">
 <head>
 <meta charset="UTF-8">
 <title>Layout</title>
@@ -17,7 +19,7 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a th:href="@{/index}">Accueil</a></li>
 				<li><a th:href="@{/articles}">List articles</a></li>
-				<li><a th:href="@{/article}">Article</a></li>
+				<li><a th:href="@{/article} sec:authorize="hasRole('ROLE_ADMIN')"">Article</a></li>
 				<li><a th:href="@{/cart}">Voir Panier</a></li>
 			</ul>
 		</div>

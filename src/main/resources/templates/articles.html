@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://tymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://ww.thymeleaf.org/extras/spring-security5"
 	layout:decorate="layout">
 <head>
 <meta charset="UTF-8">
@@ -28,7 +29,7 @@
 			</nav>
 		
 		<div class="panel panel-primary">
-			<div class="panel-heading">List articles</div>
+			<div class="panel-heading">Articles list</div>
 
 		</div>
 		<div class="row">
@@ -41,7 +42,7 @@
 				</form>
 			</div>
 			<div class="col-sm-2">
-				<a class="btn btn-success" th:href="@{/article}"> Add
+				<a class="btn btn-success" th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')"> Add
 					article </a>
 			</div>
 		</div>
@@ -69,8 +70,8 @@
 					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
 					
 				<td><a th:if="${isAdmin}" class="btn btn-danger"
-					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}">Delete</a>
-					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}">Edit</a>
+					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}" sec:authorize="hasRole('ROLE_ADMIN')">Delete</a>
+					<a class="btn btn-warning ms-4" th:href="@{/edit(id=${a.id})}" sec:authorize="hasRole('ROLE_ADMIN')">Edit</a>
 					<a class="btn btn-ligth" th:href="@{/addCart(id=${a.id})}"> <img class="picturePanier-success" 
 					alt="image" src="../static/images/panier.jpg" th:src="@{images/panier.jpg}" height="15px" width="15px"/>  Add to cart   
 					</a></td>
@@ -85,24 +86,6 @@
 		</ul>
 
 	</div>
-
-	<!-- ----------------------------------------------------------------------- -->
-	<div class="form-check">
-		<input class="form-check-input" type="radio" name="exampleRadios"
-			id="exampleRadios1" value="option1" checked> <label
-			class="form-check-label" for="exampleRadios1"> Admin rights </label>
-	</div>
-	<div class="form-check">
-		<input class="form-check-input" type="radio" name="exampleRadios"
-			id="exampleRadios2" value="option2"> <label
-			class="form-check-label" for="exampleRadios2"> User rights </label>
-	</div>
-	<div class="form-check">
-		<input class="form-check-input" type="radio" name="exampleRadios"
-			id="exampleRadios2" value="option2"> <label
-			class="form-check-label" for="exampleRadios2"> Visitor rights </label>
-	</div>
-	<!-- ----------------------------------------------------------------------- -->
 	</div>
 </body>
 </html>

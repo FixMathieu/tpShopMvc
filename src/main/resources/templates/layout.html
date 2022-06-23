@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 
 <html 	xmlns:th = "http://tymeleaf.org"
-		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout">
+		xmlns:layout = "http://www.ultraq.net.nz/thymeleaf/layout"
+		xmlns:sec="http://ww.thymeleaf.org/extras/spring-security5">
 		
 <head>
 <meta charset="UTF-8">
@@ -12,8 +13,11 @@
 
 <body class="body bg-image" 
      style="background-image: url('https://wallpaperaccess.com/full/2677220.jpg');
-            height: 100vh">
-	<nav class="navbar navbar-primary">
+         background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+background-size: cover;">
+	<nav class="navbar navbar-primary" style="background-color: rgba(0, 0, 0, 0.5)">
 		<div class="container-fluid">
 			<div class="navbar-header">
 			
@@ -23,19 +27,22 @@
 			<ul class="nav navbar-nav">
 				<li class="active"><a th:href="@{/index}">HomePage</a></li>
 				<li><a th:href="@{/articles}">Articles list</a></li>
-				<li><a th:href="@{/article}">Article</a></li>
+				<li><a th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')">Article</a></li>
 				<li><a th:href="@{/cart}">See cart</a></li>
 			</ul>
 		</div>
 	</nav>
-	<section layout:fragment="content" style ="height:625px" ></section>
+	<section layout:fragment="content"></section>
 </body>
-<footer id="footer" class="bg-dark text-center text-lg-start">
-  <!-- Copyright -->
-  <div class="text-white text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+
+<footer>
+
+  <div class="text-white text-center p-3" style="background-color:black; color: white">
+  <h3>PignonLine</h3>
+  <p>PignonLine is an OnlineShop created by ThePignons</p>
     © 2022 Copyright:
-    <a class="text-white">ThePignons</a>
+    <a>ThePignons</a>
   </div>
-  <!-- Copyright -->
+ 
 </footer>
 </html>
