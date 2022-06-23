@@ -13,11 +13,11 @@
 		<div class="container">
 			<div class="col-md-4 col-xs-8">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Saisir un nouvel article</div>
+					<div class="panel-heading">Enter New Article</div>
 					<div class="panel-body">
 						<form th:action="@{/save}" method="POST">
 							<div class="form-group">
-								<label class="control-label">Marque</label> <input
+								<label class="control-label">Brand</label> <input
 									class="form-control" type="text" name="brand"
 									th:value="${article.brand}"> <span
 									th:errors="${article.brand}"></span>
@@ -38,7 +38,7 @@
 
 							</div>
 						<div class="from-group">
-								<label class="control-label">Categorie</label> <select
+								<label class="control-label">Category</label> <select
 									class="form-control" name="category"
 									th:value="${article.category}">
 									<option th:each="c:${listCategory}" th:text="${c.name}"
@@ -49,7 +49,7 @@
 
 						
 							<div class="form-group">
-								<label class="control-label">Image</label> <select
+								<label class="control-label">Picture</label> <select
 									class="form-control" name="image" th:value="${article.image}">
 									<option th:each="a:${listArticle}" th:text="${a.image}" th:value="${a.image}">
 									</option>

@@ -1,15 +1,29 @@
-
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+}
 .title{
-	color:blue;
-	display:flex;
-	justify-content:space-between;
+color:rgba(0, 0, 0, 0.5);
+	
+	
 	font-size:50px;
-	padding-left:250px;
+	
+	
+}
+.titleName{
+	color:rgba(0, 0, 0, 0.5);
+	background-image:url('../images/boutique.jpg');
+	font-size:50px;
+
+	border:solid 1px black;
+
 }
 .picture{
-	width:100%;
-	height:100%;
-	padding-left:100px;
+	
 }
 
 .er-picture{
@@ -21,4 +35,13 @@
 	width:100%;
 	display:flex;
 	justify-content:space-between;
+}
+footer {
+	position: relative; bottom: 0; left: 0; right: 0;
+    text-align: center;
+    color: white;
+}
+.pictureArticles{
+	height:50px;
+	width:15px;
 }

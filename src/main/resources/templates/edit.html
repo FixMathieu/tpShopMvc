@@ -13,18 +13,18 @@
 		<div class="container">
 			<div class="col-md-4 col-xs-8">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Modifier l'article</div>
+					<div class="panel-heading">Modify Article</div>
 					<div class="panel-body">
 						<form th:action="@{/save}" method="POST" th:object="${article}">
 
 							<div class="form-group">
-								<label class="control-label">id : </label> <label
+								<label class="control-label">Id : </label> <label
 									th:text=${article.id}></label> <input class="form-control"
 									type="hidden" name="id" th:value="${article.id}">
 							</div>
 
 							<div class="form-group">
-								<label class="control-label">Marque</label> <input
+								<label class="control-label">Brand</label> <input
 									class="form-control" type="text" name="brand"
 									th:value="${article.brand}"> <span
 									th:errors="${article.brand}"></span>
@@ -44,14 +44,14 @@
 									th:errors="${article.price}"></span>
 							</div>
 							<div class=" form-group">
-								<label class="control-label">Quantité</label> <input
+								<label class="control-label">Quantity</label> <input
 									class="form-control" type="text" name="quantity"
 									th:value="${article.quantity}"> <span
 									th:errors="${article.quantity}"></span>
 							</div>
 							
 							<div class="from-group">
-								<label class="control-label">Categorie</label> <select
+								<label class="control-label">Category</label> <select
 									class="form-control" name="category"
 									th:value="${article.category}">
 									<option th:each="c:${listCategory}" th:text="${c.name}"
@@ -62,7 +62,7 @@
 
 						
 							<div class="form-group">
-								<label class="control-label">Image</label> <select
+								<label class="control-label">Picture</label> <select
 									class="form-control" name="image" th:value="${article.image}">
 									<option th:each="a:${listArticle}" th:text="${a.image}" th:value="${a.image}">
 									</option>

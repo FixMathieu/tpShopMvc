@@ -9,17 +9,22 @@
 <link rel="stylesheet" 	href="../static/css/styles.css"			th:href="@{css/styles.css}">
 </head>
 
-<body>
-	<nav class="navbar navbar-primary">
+<body class="body bg-image" 
+     style="background-image: url('https://wallpaperaccess.com/full/2677220.jpg');
+         background-repeat: no-repeat;
+background-position: center center;
+background-attachment: fixed;
+background-size: cover;">
+	<nav class="navbar navbar-primary" style="background-color: rgba(0, 0, 0, 0.5)">
 		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand " href="#">Mon site demo</a>
+			<a class="navbar-brand " href="#">PignonLine</a>
 			</div>
 			<ul class="nav navbar-nav">
-				<li class="active"><a th:href="@{/index}">Accueil</a></li>
-				<li><a th:href="@{/articles}">List articles</a></li>
-				<li><a th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')">Article</a></li>
-				<li><a th:href="@{/cart}">Voir Panier</a></li>
+				<li class="active"><a th:href="@{/index}">HomePage</a></li>
+				<li><a th:href="@{/articles}"> Articles List</a></li>
+				<li><a th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')"> Add Article</a></li>
+				<li><a th:href="@{/cart}">See cart</a></li>
 				<li><a th:href="@{/login}">Login</a></li>
 				
 			</ul>
@@ -27,4 +32,14 @@
 	</nav>
 	<section layout:fragment="content"></section>
 </body>
+<footer>
+
+  <div class="text-white text-center p-3" style="background-color:rgba(0, 0, 0, 0.5); color: white">
+  <h3>PignonLine</h3>
+  <p>PignonLine is an OnlineShop created by ThePignons</p>
+    © 2022 Copyright:
+    <a>ThePignons</a>
+  </div>
+ 
+</footer>
 </html>

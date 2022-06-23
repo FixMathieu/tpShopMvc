@@ -16,8 +16,7 @@
 				<div class="container-fluid">
 					<div class="navbar-header">
 						<a class="navbar-brand"
-							th:href="@{/articles(page=0,keyword=${keyword})}">Tous les
-							articles</a>
+							th:href="@{/articles(page=0,keyword=${keyword})}">All Articles</a>
 					</div>
 					<ul class="nav navbar-nav" th:each="c:${listCategory}">
 						<li th:class="${c.id==category}?'active':''"><a
@@ -29,14 +28,14 @@
 			</nav>
 		
 		<div class="panel panel-primary">
-			<div class="panel-heading">List articles</div>
+			<div class="panel-heading">Articles List</div>
 
 		</div>
 		<div class="row">
 			<div class="col-sm-10">
 				<form th:action="@{/articles}" method="get">
 
-					<label>Keyword :</label> <input type="text" name="keyword"
+					<label style="color:white">Keyword :</label> <input type="text" name="keyword"
 						th:value="${keyword}">
 					<button type="submit" class="btn btn-primary">Search</button>
 				</form>
@@ -47,7 +46,7 @@
 			</div>
 		</div>
 		<table class="table">
-			<tr>
+			<tr bgcolor="white">
 				<th>Id</th>
 				<th>Marque</th>
 				<th>Description</th>
@@ -58,7 +57,7 @@
 				<th>Action(s)</th>
 
 			</tr>
-			<tr th:each="a:${listArticle}">
+			<tr bgcolor="white" th:each="a:${listArticle}">
 				<td th:text="${a.id}"></td>
 				<td th:text=${a.brand}></td>
 				<td th:text="${a.description}"></td>
@@ -67,7 +66,7 @@
 				<td th:text="${a.category.name}"></td>
 				<td><img class="pictureArticles" style="width: 50px;"
 					alt="image" src="../static/images/+${a.image}" 
-					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
+					th:src="@{${'/images/'+a.image}}"width="40px"/></td>
 					
 				<td><a class="btn btn-danger"
 					th:href="@{/delete(id=${a.id} , page=${currentPage},keyword=${keyword})}" sec:authorize="hasRole('ROLE_ADMIN')">Delete</a>
