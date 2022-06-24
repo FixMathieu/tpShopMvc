@@ -4,18 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.LogoutConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 
+import javax.servlet.ServletException;
 import javax.sql.DataSource;
 
 @Configuration
 @EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //	@Autowired
 //	BCryptPasswordEncoder bCryptPasswordEncoder;
@@ -49,16 +54,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		//http.formLogin().loginPage("/login");							//   --------------------------> page de login perso
-		http.formLogin();												//   --------------------------> page de login generée
+		   http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").permitAll();
+//		http.formLogin().loginPage("/login.html");							//   --------------------------> page de login perso
+//		http.formLogin();												//   --------------------------> page de login generée
 	
 	// Gestion des accès
-		http.authorizeRequests().antMatchers("/index","/articles").permitAll();
+		
+		http.authorizeRequests().antMatchers("/index","/articles","/login").permitAll();
+	      
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/article","/delete","/save","/edit","/login","/test").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/login","/test").hasRole("USER");
 //		
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée
+		
+	   
 	}
+	
 }
 
 
