@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.DecimalMin;
 
@@ -28,10 +29,15 @@ public class Details implements Serializable {
 
 	private int quantity;
 	
-	@OneToMany
-	private Collection<Commande> commandes;
-	
-	@OneToMany
-	private Collection<Article> articles;
+//	@OneToMany
+//	private Collection<Commande> commandes;
+//	
+//	@OneToMany
+//	private Collection<Article> articles;
 
+	@ManyToOne
+	private Commande commande;
+	
+	@ManyToOne
+	private Article article;
 }

@@ -140,10 +140,9 @@ public class ArticleController {
 	}
 	
 	@GetMapping("/commande")
-	public String commande() {
+	public String commande(Model model) {
 		
-		
-		
+		model.addAttribute("customer",new Customer());		
 		return "commande";
 		
 	}
@@ -169,9 +168,12 @@ public class ArticleController {
 		}
 		
 		@PostMapping("/submitCustomer")
-		public String submitCustomer(BindingResult bindingResult,@Valid Customer customer) {
-			if(bindingResult.hasErrors()) return "edit";
+		public String submitCustomer(@Valid Customer customer, BindingResult bindingResult) {
+			if(bindingResult.hasErrors()) return "commande";
 			customerRepository.save(customer);
+			
+			job.placeCommande();
+			
 			return "redirect:/articles";
 		}
 }
