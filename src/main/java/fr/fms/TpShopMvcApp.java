@@ -36,34 +36,34 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		Category camera = job.categoryRepository.save(new Category("Camera"));
 		Category tv = job.categoryRepository.save(new Category("TV"));
 		
-		job.articleRepository.save(new Article(null,"S8","Samsung",250,1,smartphone,null, "samsung.jpg"));
-		job.articleRepository.save(new Article(null,"S9","Samsung", 300,1,smartphone,null, "samsung.jpg"));
-		job.articleRepository.save(new Article(null,"iPhone 10","Apple",500,1,smartphone,null, "iphone.jpg"));		
-		job.articleRepository.save(new Article(null,"MI11","Xiaomi",100,1,smartphone,null, "xiaomi.jpg"));
-		job.articleRepository.save(new Article(null,"9 Pro","OnePlus",200,1,smartphone,null, "oneplus.jpg"));
-		job.articleRepository.save(new Article(null,"Pixel 5","Google",350,1,smartphone,null, "googleSp.jpg"));
-		job.articleRepository.save(new Article(null,"F3","Poco",150,1,smartphone,null, "poco.jpg"));
+		job.articleRepository.save(new Article("S8","Samsung",250,1,smartphone, "samsung.jpg"));
+		job.articleRepository.save(new Article("S9","Samsung", 300,1,smartphone, "samsung.jpg"));
+		job.articleRepository.save(new Article("iPhone 10","Apple",500,1,smartphone, "iphone.jpg"));		
+		job.articleRepository.save(new Article("MI11","Xiaomi",100,1,smartphone, "xiaomi.jpg"));
+		job.articleRepository.save(new Article("9 Pro","OnePlus",200,1,smartphone, "oneplus.jpg"));
+		job.articleRepository.save(new Article("Pixel 5","Google",350,1,smartphone, "googleSp.jpg"));
+		job.articleRepository.save(new Article("F3","Poco",150,1,smartphone, "poco.jpg"));
 		
-		job.articleRepository.save(new Article(null,"810","Dell",550,1,pc,null, "dellpc.jpg"));
-		job.articleRepository.save(new Article(null,"F756","Asus",600,1,pc,null, "asuspc.jpg"));
-		job.articleRepository.save(new Article(null,"E80","Asus",700,1,pc,null, "asuspc.jpg"));
-		job.articleRepository.save(new Article(null,"Pro","MacBook",1000,1,pc,null, "macbook.jpg"));
-		job.articleRepository.save(new Article(null,"Air","MacBook",1200,1,pc,null, "macbook.jpg"));
+		job.articleRepository.save(new Article("810","Dell",550,1,pc, "dellpc.jpg"));
+		job.articleRepository.save(new Article("F756","Asus",600,1,pc, "asuspc.jpg"));
+		job.articleRepository.save(new Article("E80","Asus",700,1,pc, "asuspc.jpg"));
+		job.articleRepository.save(new Article("Pro","MacBook",1000,1,pc, "macbook.jpg"));
+		job.articleRepository.save(new Article("Air","MacBook",1200,1,pc, "macbook.jpg"));
 		
-		job.articleRepository.save(new Article(null,"XL 5","IPad",300,1,tablet,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"XL 7","IPad",500,1,tablet,null, "testimage1.png"));
+		job.articleRepository.save(new Article("XL 5","IPad",300,1,tablet, "testimage1.png"));
+		job.articleRepository.save(new Article("XL 7","IPad",500,1,tablet, "testimage1.png"));
 		
 		
-		job.articleRepository.save(new Article(null,"MG30","Canon",50,1,printer,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"MG50","Canon",60,1,printer,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"800","HP",50,1,printer,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"3T","Epson",100,1,printer,null, "testimage1.png"));
+		job.articleRepository.save(new Article("MG30","Canon",50,1,printer, "testimage1.png"));
+		job.articleRepository.save(new Article("MG50","Canon",60,1,printer, "testimage1.png"));
+		job.articleRepository.save(new Article("800","HP",50,1,printer, "testimage1.png"));
+		job.articleRepository.save(new Article("3T","Epson",100,1,printer, "testimage1.png"));
 		
-		job.articleRepository.save(new Article(null,"7","GoPro",150,1,camera,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"10","GoPro",200,1,camera,null, "testimage1.png"));
+		job.articleRepository.save(new Article("7","GoPro",150,1,camera, "testimage1.png"));
+		job.articleRepository.save(new Article("10","GoPro",200,1,camera, "testimage1.png"));
 		
-		job.articleRepository.save(new Article(null,"HT","Panasonic",1500,1,tv,null, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"L43","Philips",450,1,tv,null, "testimage1.png"));	
+		job.articleRepository.save(new Article("HT","Panasonic",1500,1,tv, "testimage1.png"));
+		job.articleRepository.save(new Article("L43","Philips",450,1,tv, "testimage1.png"));	
 		
 		
 //		job.userRepository.save(new User(null,"Mathieu","Fix","Dax", "mathieu.fix@fms.com", 118218, "mf","ADMIN"));
