@@ -54,13 +54,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		   http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").permitAll();
+		   http.formLogin().loginPage("/login").loginProcessingUrl("/login").permitAll();
 //		http.formLogin().loginPage("/login.html");							//   --------------------------> page de login perso
 //		http.formLogin();												//   --------------------------> page de login generée
 	
 	// Gestion des accès
 		
-		http.authorizeRequests().antMatchers("/index","/articles","/login").permitAll();
+		http.authorizeRequests().antMatchers("/index","/articles","/addCart","/login","/cart").permitAll();
 	      
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/article","/delete","/save","/edit","/login","/test").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/login","/test").hasRole("USER");

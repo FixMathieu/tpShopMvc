@@ -29,7 +29,7 @@ background-size: cover;">
 			<ul class="nav navbar-nav pull-right">
 			
 			<li><a  th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a></li>
-			
+			<li sec:authorize="!isAuthenticated()">Bonjour : <p ></li>
 			<li><a  th:href="@{/logout}" sec:authorize="isAuthenticated()"> logOut</a></li>
 			
 			</ul>

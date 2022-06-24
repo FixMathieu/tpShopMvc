@@ -55,3 +55,14 @@ footer {
 	height: 50px;
 	width: 15px;
 }
+.cube{
+	display:flex;
+	justify-content:start;
+}
+#btnHome{
+	border-radius :50px;
+
+}
+#loginPage{
+	display:flex;
+}
