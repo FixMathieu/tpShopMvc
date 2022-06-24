@@ -29,7 +29,7 @@ import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
-import fr.fms.entities.Order;
+import fr.fms.entities.Commande;
 
 
 @Controller
@@ -139,9 +139,9 @@ public class ArticleController {
 	public String order() {
 		
 		//PLACEHOLDER -> Need to convert cart to Order here
-		Order order = new Order();
+		Commande commande = new Commande();
 		
-		job.placeOrder(order);
+		job.placeCommande(commande);
 		
 		return "redirect:/articles";
 		

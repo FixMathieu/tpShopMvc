@@ -15,19 +15,17 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class Order {
+public class Commande {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(name="id")
 	private Long id;
 	
-	@Column(name="date")
+	@Column(name="commandeDate")
 	private Date date;
 	
-	@Column(name="totalAmount")
 	private double totalAmount;
 
-//	@ManyToOne
-//	private Customer customer;
+	@ManyToOne
+	private Customer customer;
 	
 
 }
