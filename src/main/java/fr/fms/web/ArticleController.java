@@ -27,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CustomerRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Commande;
+import fr.fms.entities.Customer;
 
 
 @Controller
@@ -40,6 +42,8 @@ public class ArticleController {
 	ArticleRepository articleRepository;
 	@Autowired
 	IBusinessImpl job;
+	@Autowired
+	CustomerRepository customerRepository;
 	
 	@GetMapping("/index")
 	public String index() {
@@ -135,15 +139,12 @@ public class ArticleController {
 		return "edit";
 	}
 	
-	@GetMapping("/order")
-	public String order() {
+	@GetMapping("/commande")
+	public String commande() {
 		
-		//PLACEHOLDER -> Need to convert cart to Order here
-		Commande commande = new Commande();
 		
-		job.placeCommande(commande);
 		
-		return "redirect:/articles";
+		return "commande";
 		
 	}
 	
@@ -165,5 +166,12 @@ public class ArticleController {
 		@GetMapping("/403")
 		public String refused() {
 			return "403";
+		}
+		
+		@PostMapping("/submitCustomer")
+		public String submitCustomer(BindingResult bindingResult,@Valid Customer customer) {
+			if(bindingResult.hasErrors()) return "edit";
+			customerRepository.save(customer);
+			return "redirect:/articles";
 		}
 }

@@ -34,4 +34,12 @@ public class Customer {
 	@OneToMany(mappedBy ="customer")
 	private Collection<Commande> commandes;
 
+	public Customer(String firstName, String lastName, String adress, String email, long phone) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.adress = adress;
+		this.email = email;
+		this.phone = phone;
+	}
+	
 }
