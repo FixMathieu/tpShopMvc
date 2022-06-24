@@ -2,6 +2,7 @@ package fr.fms.entities;
 
 import java.util.Collection;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -17,14 +18,20 @@ import lombok.NoArgsConstructor;
 @Data @NoArgsConstructor @AllArgsConstructor
 public class Customer {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@Column(name="id")
 	private Long id;
+	@Column(name="firstName")
 	private String firstName;
+	@Column(name="lastName")
 	private String lastName;
+	@Column(name="adress")
 	private String adress;
+	@Column(name="email")
 	private String email;
+	@Column(name="phone")
 	private long phone;
 
-	@OneToMany(mappedBy ="customer")
-	private Collection<Order> orders;
+//	@OneToMany(mappedBy ="customer")
+//	private Collection<Order> orders;
 
 }
