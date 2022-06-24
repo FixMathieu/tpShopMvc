@@ -1,47 +1,57 @@
 html {
-  height: 100%;
+	height: 100%;
 }
+
 body {
-  min-height: 100%;
-  margin: 0;
-  padding: 0;
-}
-.title{
-color:rgba(0, 0, 0, 0.5);
-	
-	
-	font-size:50px;
-	
-	
-}
-.titleName{
-	color:rgba(0, 0, 0, 0.5);
-	background-image:url('../images/boutique.jpg');
-	font-size:50px;
-
-	border:solid 1px black;
-
-}
-.picture{
-	
+	min-height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
-.er-picture{
-	width:50%;
-	height:50%;
+.title {
+	color: rgba(0, 0, 0, 0.5);
+	font-size: 50px;
 }
 
-.category{
-	width:100%;
+.titleName {
+	color:white;
 	display:flex;
-	justify-content:space-between;
+	justify-content:center;
+	padding-top:50px;
+	background-image: url('../images/boutique.jpg');
+	background-repeat: no-repeat;
+	background-position: center;
+	font-size: 50px;
+	height:570px;
+	width: 100%;
+	
 }
+
+.picture {
+	
+}
+
+.er-picture {
+	width: 50%;
+	height: 50%;
+}
+
+.category {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
 footer {
-	position: relative; bottom: 0; left: 0; right: 0;
-    text-align: center;
-    color: white;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	text-align: center;
+	color: white;
 }
-.pictureArticles{
-	height:50px;
-	width:15px;
+
+.pictureArticles {
+	height: 50px;
+	width: 15px;
 }

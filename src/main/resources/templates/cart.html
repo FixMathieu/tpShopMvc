@@ -9,43 +9,45 @@
 	th:href="@{css/bootstrap.min.css}">
 </head>
 <body>
-		<div layout:fragment="content">
+	<div layout:fragment="content">
 		<div class="container">
-		
-			<h1 class="title">Voici votre panier</h1>
-			
-				<table class="table">
-			<tr>
-				<th>Id</th>
-				<th>Brand</th>
-				<th>Description</th>
-				<th>Price</th>
-				<th>Quantity</th>
-				<th>Catégory</th>
-				<th>Picture</th>
-				<th>Action(s)</th>
+			<div class="panel panel-primary">
+				<div class="panel-heading">Here's your Cart</div>
+			</div>
 
-			</tr>
-			<tr th:each="a:${listArticle}">
-			
-				<td th:text="${a.id}"></td>
-				<td th:text=${a.brand}></td>
-				<td th:text="${a.description}"></td>
-				<td th:text="${a.price}"></td>
-				<td th:text="${quantities.get(a.id)}"></td>
-				<td th:text="${a.category.name}"></td>
-				<td><img class="pictureArticles" style="width: 50px;"
-					alt="image" src="../static/images/+${a.image}" 
-					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
-				<td><a  class="btn btn-danger"
-					th:href="@{/removeCart(id=${a.id})}">Remove</a></td>
-					
-			</tr>
 
-		</table>
-	
-	
-			
+			<table class="table">
+				<tr bgcolor="white">
+					<th>Id</th>
+					<th>Brand</th>
+					<th>Description</th>
+					<th>Price</th>
+					<th>Quantity</th>
+					<th>Catégory</th>
+					<th>Picture</th>
+					<th>Action(s)</th>
+
+				</tr>
+				<tr th:each="a:${listArticle}" bgcolor="white">
+
+					<td th:text="${a.id}"></td>
+					<td th:text=${a.brand}></td>
+					<td th:text="${a.description}"></td>
+					<td th:text="${a.price}"></td>
+					<td th:text="${quantities.get(a.id)}"></td>
+					<td th:text="${a.category.name}"></td>
+					<td><img class="pictureArticles" style="width: 50px;"
+						alt="image" src="../static/images/+${a.image}"
+						th:src="@{${'/images/'+a.image}}" width="50px" /></td>
+					<td><a class="btn btn-danger"
+						th:href="@{/removeCart(id=${a.id})}">Remove</a></td>
+
+				</tr>
+
+			</table>
+
+
+
 		</div>
 
 	</div>
