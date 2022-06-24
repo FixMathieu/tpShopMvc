@@ -41,8 +41,8 @@ private int quantity;
 @ManyToOne
 private Category category;
 
-@ManyToOne
-private Order order;
+@ManyToMany
+private Collection<Order> orders;
 
 private String image;
 
