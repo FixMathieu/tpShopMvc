@@ -1,13 +1,11 @@
 package fr.fms.entities;
 
-import java.util.Collection;
 import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
@@ -27,7 +25,5 @@ public class Order {
 	@ManyToOne
 	private Customer customer;
 	
-	@ManyToMany
-	private Collection<Article> articles;
 
 }
