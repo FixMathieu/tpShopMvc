@@ -12,7 +12,7 @@ import fr.fms.entities.Category;
 
 @SpringBootApplication
 public class TpShopMvcApp implements CommandLineRunner  {
-	
+
 	@Autowired
 	private IBusinessImpl job;
 
@@ -22,12 +22,12 @@ public class TpShopMvcApp implements CommandLineRunner  {
 
 	@Override
 	public void run(String... args) throws Exception {
-//	articleRepository.save(new Article(null,"Samsung"," S8",250,10,1));
-//		articleRepository.findAll().forEach(a -> System.out.println(a));
-		
+		//	articleRepository.save(new Article(null,"Samsung"," S8",250,10,1));
+		//		articleRepository.findAll().forEach(a -> System.out.println(a));
+
 		generateValues();
 	}
-	
+
 	public void generateValues() {
 		Category smartphone = job.categoryRepository.save(new Category("Smartphone"));
 		Category pc = job.categoryRepository.save(new Category("Ordinateur"));
@@ -81,10 +81,10 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		
 
 	}
-	
+
 	@RequestMapping(value = "/")
 	public String index() {
-	return "index";
+		return "index";
 	}
 	//
 }

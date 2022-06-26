@@ -23,6 +23,9 @@ public class IBusinessImpl implements IBusiness{
 	public static HashMap<Long, Integer> cart = new HashMap<Long, Integer>();
 	
 	@Autowired
+	public static HashMap<Long, Integer> cart;
+	
+	@Autowired
 	public ArticleRepository articleRepository;
 	
 	@Autowired
@@ -104,6 +107,7 @@ public class IBusinessImpl implements IBusiness{
 			cart.put(id, cart.get(id)-1);
 		}else if(cart.get(id)==1){
 			cart.remove(id);
+		/* if(cart.get(id)>0) { cart.put(id, cart.get(id)-1); */
 		}
 	}
 	

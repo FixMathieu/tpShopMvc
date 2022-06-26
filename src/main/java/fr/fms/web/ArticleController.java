@@ -54,6 +54,8 @@ public class ArticleController {
 		model.addAttribute("listArticle", articlesInCart);
 		return "cart";
 	}
+	// @GetMapping("/cart") public String cart(Model model,@RequestParam(name="page",defaultValue="0") int page) { Page<Article> articles = articleRepository.findByQuantityGreaterThan(0, PageRequest.of(page, 5)); model.addAttribute("listArticle",articles.getContent()); return "cart"; }
+	
 
 	@GetMapping("/addCart")
 	public String addCart(Long id) {
@@ -100,11 +102,40 @@ public class ArticleController {
 		return "articles";
 	}
 
+
 	@GetMapping("/delete")
 	public String delete(Long id, int page, String keyword) {
 		articleRepository.deleteById(id);
-		return "redirect:/articles?page=" + page + "&keyword=" + keyword;
+		return "redirect:/articles?page="+page+"&keyword="+keyword;
 	}
+	@PostMapping("/save")
+	public String save( @Valid  Article article, BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) return "article";
+		articleRepository.save(article);
+		return"redirect:/articles";
+	}
+	@GetMapping("/article")
+	public String article(Model model) {
+		List<Category> category= categoryRepository.findAll();
+		model.addAttribute("listCategory",category);
+		model.addAttribute("article",new Article());
+		return "article";
+	}
+	@GetMapping("/edit")
+	public String edit(Long id, Model model) {
+		List<Category> category= categoryRepository.findAll();
+		model.addAttribute("listCategory",category);
+		Article article = articleRepository.findById(id).get();
+		model.addAttribute("article", article);
+		return "edit";
+
+	}
+	//	@PostMapping("/update")
+	//	public String update(@Valid  Article article, BindingResult bindingResult){
+	//		if(bindingResult.hasErrors()) return "article";
+	//		articleRepository.save(article);
+	//		return"redirect:/articles";
+	//	}
 
 	@PostMapping("/save")
 	public String save(@Valid Article article, BindingResult bindingResult) {
