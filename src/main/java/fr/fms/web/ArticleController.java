@@ -192,7 +192,7 @@ public void nameAuth(Model model) {
 			return "redirect:/articles";
 		}
 		
-		public class LoginController {
+	
 			@GetMapping("/login")
 			public String login(Model model) {
 				nameAuth(model);
@@ -204,5 +204,5 @@ public void nameAuth(Model model) {
 				nameAuth(model);
 				return "redirect:/index";
 			}
-		}
+		
 }
