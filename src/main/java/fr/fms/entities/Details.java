@@ -1,12 +1,10 @@
 package fr.fms.entities;
-
-import java.util.Collection;
+import java.io.Serializable;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,26 +13,11 @@ import lombok.ToString;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor @ToString
-public class Category {
+public class Details implements Serializable{
+	private static final long serialVersionUID = 1L; 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 private Long id;
-	String name;
+private double price;
+private int quantity;
 
-	@OneToMany(mappedBy ="category")
-	private Collection<Article> articles;
-	
-	public Category(String name) {
-		this.name=name;
-	}
-
-	public Category(Long id, String name) {
-		this.id=id;
-		this.name=name;
-	}
-
-	@Override
-	public String toString() {
-		return name ;
-	}
-	
 }

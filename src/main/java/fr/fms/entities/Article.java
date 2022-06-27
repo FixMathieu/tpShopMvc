@@ -21,25 +21,27 @@ import lombok.ToString;
 public class Article implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-private Long id;
+	private Long id;
 	
-@NotNull
-@Size(min=1,max=20)
-private String description;
+	@NotNull
+	@Size(min=1,max=20)
+	private String brand;
 
-@NotNull
-@Size(min=1,max=20)
-private String brand;
+	@NotNull
+	@Size(min=1,max=20)
+	private String description;
 
-@DecimalMin("50")
-private double price;
 
-private int quantity;
 
-@ManyToOne
-private Category category;
+	@DecimalMin("50")
+	private double price;
 
-private String image;
+	private int quantity;
+
+	@ManyToOne
+	private Category category;
+
+	private String image;
 
 public Article(String image) {
 	this.image=image;

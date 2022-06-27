@@ -28,6 +28,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Autowired
 	DataSource dataSource;
 	
+	public String encodePassword(String password) {
+		PasswordEncoder pe = passwordEncoder();
+		return pe.encode(password);
+	}
+	
 	@Override  
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
 		PasswordEncoder pe = passwordEncoder();
@@ -40,8 +45,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// *si* BDD :
 		auth.jdbcAuthentication()
 		.dataSource(dataSource)
-		.usersByUsernameQuery("select username as principal, password as credentials, active from T_Users where username=?")
-		.authoritiesByUsernameQuery("select username as principal, role as role from T_Users_Roles where username=?")
+		.usersByUsernameQuery("select username as principal, password as credentials, active from User where username=?")
+		.authoritiesByUsernameQuery("select username as principal, role as role from User where username=?")
 		.rolePrefix("ROLE_")
 		.passwordEncoder(passwordEncoder());
 	}

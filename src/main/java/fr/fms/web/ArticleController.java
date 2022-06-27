@@ -26,8 +26,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CustomerRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Commande;
+import fr.fms.entities.Customer;
 
 @Controller
 public class ArticleController {
@@ -40,8 +43,9 @@ public class ArticleController {
 
 	@GetMapping("/")
 	public String homePage() {
-		return "index";
-	}
+	@Autowired
+	CustomerRepository customerRepository;
+
 	@GetMapping("/index")
 	public String index(Model model) {
 		nameAuth(model);
@@ -150,4 +154,42 @@ public void nameAuth(Model model) {
 	 model.addAttribute("auth",currentUserCo);
 }
 
+	
+	@GetMapping("/commande")
+	public String commande(Model model) {
+		
+		model.addAttribute("customer",new Customer());		
+		return "commande";
+		
+	}
+	
+	
+	 @GetMapping("/login")
+	    public String login() {
+	        return "login";
+	    }
+	    @GetMapping("/logout")
+	    public String logout(HttpServletRequest request, HttpServletResponse response) {
+	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+	        if (auth != null){    
+	            new SecurityContextLogoutHandler().logout(request, response, auth);
+	        }
+	        return "redirect:/login";
+	    }
+
+		
+		@GetMapping("/403")
+		public String refused() {
+			return "403";
+		}
+		
+		@PostMapping("/submitCustomer")
+		public String submitCustomer(@Valid Customer customer, BindingResult bindingResult) {
+			if(bindingResult.hasErrors()) return "commande";
+			customerRepository.save(customer);
+			
+			job.placeCommande();
+			
+			return "redirect:/articles";
+		}
 }
