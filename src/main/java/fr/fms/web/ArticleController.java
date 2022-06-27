@@ -38,13 +38,22 @@ public class ArticleController {
 	@Autowired
 	IBusinessImpl job;
 
+	@GetMapping("/")
+	public String homePage() {
+		return "index";
+	}
 	@GetMapping("/index")
-	public String index() {
+	public String index(Model model) {
+		nameAuth(model);
+//		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
+//		 String currentUserCo = auth.getName();											// recupere son nom
+//		 model.addAttribute("auth",currentUserCo);
 		return "index";
 	}
 
 	@GetMapping("/cart")
 	public String cart(Model model) {
+		nameAuth(model);
 		List<Article> articles = articleRepository.findAll();
 		List<Article> articlesInCart = articles.stream().filter(article -> job.getCart().get(article.getId()) != null)
 				.collect(Collectors.toList());
@@ -86,17 +95,16 @@ public class ArticleController {
 //		Page<Article> articlesCat=articleRepository.findByCategoryId(catId,PageRequest.of(page, 5));
 		List<Category> categories = categoryRepository.findAll();
 		model.addAttribute("keyword", kw);
-//		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
-//		 String currentUserCo = auth.getName();											// recupere son nom
+		
 //		 UserDetails userDetails = (UserDetails) auth.getPrincipal();					// recupere ses droits/roles
-
+		 nameAuth(model);
 		model.addAttribute("listCategory", categories);
 		model.addAttribute("category", catId);
 		model.addAttribute("listArticle", articles.getContent());
 		model.addAttribute("pages", new int[articles.getTotalPages()]);
 		model.addAttribute("currentPage", page);
 		model.addAttribute("isAdmin", isAdmin);
-//		model.addAttribute("auth",auth);								// verifie si un utilisateur est connecté ( "${auth!=null}" ) ou pas ( "${auth==null}" )
+										// verifie si un utilisateur est connecté ( "${auth!=null}" ) ou pas ( "${auth==null}" )
 		return "articles";
 	}
 
@@ -116,6 +124,7 @@ public class ArticleController {
 
 	@GetMapping("/article")
 	public String article(Model model) {
+		nameAuth(model);
 		List<Article> articles = articleRepository.findAll();
 		model.addAttribute("listArticle", articles);
 		List<Category> category = categoryRepository.findAll();
@@ -126,6 +135,7 @@ public class ArticleController {
 
 	@GetMapping("/edit")
 	public String edit(Long id, Model model) {
+		nameAuth(model);
 		List<Article> articles = articleRepository.findAll();
 		model.addAttribute("listArticle", articles);
 		List<Category> category = categoryRepository.findAll();
@@ -134,6 +144,10 @@ public class ArticleController {
 		model.addAttribute("article", article);
 		return "edit";
 	}
-
+public void nameAuth(Model model) {
+	 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
+	 String currentUserCo = auth.getName();											// recupere son nom
+	 model.addAttribute("auth",currentUserCo);
+}
 
 }

@@ -50,20 +50,20 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		job.articleRepository.save(new Article(null,"Pro","MacBook",1000,1,pc, "macbook.jpg"));
 		job.articleRepository.save(new Article(null,"Air","MacBook",1200,1,pc, "macbook.jpg"));
 		
-		job.articleRepository.save(new Article(null,"XL 5","IPad",300,1,tablet, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"XL 7","IPad",500,1,tablet, "testimage1.png"));
+		job.articleRepository.save(new Article(null,"XL 5","IPad",300,1,tablet, "ipad.jpg"));
+		job.articleRepository.save(new Article(null,"XL 7","IPad",500,1,tablet, "ipad.jpg"));
 		
 		
-		job.articleRepository.save(new Article(null,"MG30","Canon",50,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"MG50","Canon",60,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"800","HP",50,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"3T","Epson",100,1,printer, "testimage1.png"));
+		job.articleRepository.save(new Article(null,"MG30","Canon",50,1,printer, "canon-mg30.jpg"));
+		job.articleRepository.save(new Article(null,"MG50","Canon",60,1,printer, "canon-mg50.jpg"));
+		job.articleRepository.save(new Article(null,"OfficeJet 6950","HP",50,1,printer, "hp-6950.jpg"));
+		job.articleRepository.save(new Article(null,"WF 2830","Epson",100,1,printer, "wf-2830.jpg"));
 		
-		job.articleRepository.save(new Article(null,"7","GoPro",150,1,camera, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"10","GoPro",200,1,camera, "testimage1.png"));
+		job.articleRepository.save(new Article(null,"7","GoPro",150,1,camera, "gopro-7.jpg"));
+		job.articleRepository.save(new Article(null,"10","GoPro",200,1,camera, "gopro-10.jpg"));
 		
-		job.articleRepository.save(new Article(null,"HT","Panasonic",1500,1,tv, "testimage1.png"));
-		job.articleRepository.save(new Article(null,"L43","Philips",450,1,tv, "testimage1.png"));	
+		job.articleRepository.save(new Article(null,"HT","Panasonic",1500,1,tv, "panasonic.jpg"));
+		job.articleRepository.save(new Article(null,"L43","Philips",450,1,tv, "philips.jpg"));	
 		
 		
 //		job.userRepository.save(new User(null,"Mathieu","Fix","Dax", "mathieu.fix@fms.com", 118218, "mf","ADMIN"));
