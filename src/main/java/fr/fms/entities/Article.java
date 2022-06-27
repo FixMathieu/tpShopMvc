@@ -53,12 +53,12 @@ public Article(String brand,String description,  double price) {
 	
 }
 
-public Article(String brand,String description,  double price,int quantity,Category category,String image) {
-	this.brand = brand;
-	this.description = description;
-	this.price = price;
-	this.quantity=quantity;
-	this.category=category;
-	this.image=image;
-}
+//public Article(String brand,String description,  double price,int quantity,Category category,String image) {
+//	this.brand = brand;
+//	this.description = description;
+//	this.price = price;
+//	this.quantity=quantity;
+//	this.category=category;
+//	this.image=image;
+//}
 }

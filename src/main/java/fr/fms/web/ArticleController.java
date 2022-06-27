@@ -39,7 +39,12 @@ public class ArticleController {
 	IBusinessImpl job;
 
 	@GetMapping("/index")
-	public String index() {
+	public String index(Model model) {
+Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
+String currentUserCo = auth.getName();											// recupere son nom
+UserDetails userDetails = (UserDetails) auth.getPrincipal();					// recupere ses droits/roles
+model.addAttribute("currentUserCo", currentUserCo);
+
 		return "index";
 	}
 
@@ -91,7 +96,6 @@ public class ArticleController {
 //		 Authentication auth = SecurityContextHolder.getContext().getAuthentication();	// verifie utilisateur Connecte
 //		 String currentUserCo = auth.getName();											// recupere son nom
 //		 UserDetails userDetails = (UserDetails) auth.getPrincipal();					// recupere ses droits/roles
-
 		model.addAttribute("listCategory", categories);
 		model.addAttribute("category", catId);
 		model.addAttribute("listArticle", articles.getContent());

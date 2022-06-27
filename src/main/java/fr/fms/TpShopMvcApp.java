@@ -25,7 +25,7 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		//	articleRepository.save(new Article(null,"Samsung"," S8",250,10,1));
 		//		articleRepository.findAll().forEach(a -> System.out.println(a));
 
-		generateValues();
+		//generateValues();
 	}
 
 	public void generateValues() {

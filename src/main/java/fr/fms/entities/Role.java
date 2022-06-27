@@ -12,19 +12,15 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor 
-public class User {
+public class Role {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-private Long id;
-private boolean active;
-private String username;
-private String password;
 private String role;
 
 	
 
 	@Override
 	public String toString() {
-		return username ;
+		return role ;
 	}
 	
 }

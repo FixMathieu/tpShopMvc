@@ -11,20 +11,19 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor 
-public class User {
+@Data @NoArgsConstructor @AllArgsConstructor
+public class Customer {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 private Long id;
-private boolean active;
-private String username;
-private String password;
-private String role;
-
-	
+private String adress;
+private String email;
+private String firstName;
+private String lastName;
+private long phone;
 
 	@Override
 	public String toString() {
-		return username ;
+		return firstName + " " + lastName  ;
 	}
 	
 }
