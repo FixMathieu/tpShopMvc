@@ -11,9 +11,14 @@ import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CommandeRepository;
+import fr.fms.dao.DetailsRepository;
+import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Commande;
+import fr.fms.entities.Details;
 import fr.fms.entities.User;
 
 
@@ -31,26 +36,35 @@ public class IBusinessImpl implements IBusiness{
 	@Autowired
 	public UserRepository userRepository;
 	
+	@Autowired
+	public CommandeRepository commandeRepository;
+	
+	@Autowired
+	public DetailsRepository detailsRepository;
+
+	@Autowired
+	public RoleRepository roleRepository;
+	
 	@Override
 	@PostConstruct
 	public List<Article> getAllArticles() {
 		return articleRepository.findAll();
 	}
 	
-	@Override
-	public void createArticle(String brand,String description, double price,int quantity,Category category, String image) {
-		articleRepository.save(new Article(null,brand,description,price,quantity,category, image));
-	}
+    @Override
+    public void createArticle(String brand,String description, double price,int quantity,Category category, String image) {
+        articleRepository.save(new Article(null,brand,description,price,quantity,category, image));
+    }
 	
 	@Override
 	public void deleteArticleById(Long id) {
 		articleRepository.deleteById(id);
 	}
 	
-	@Override
-	public void updateArticle(Long id, String brand, String description, double price, int quantity, String catName, String image) {
-		articleRepository.save(new Article(id,brand,description,price,quantity,categoryRepository.findByName(catName), image));
-	}
+    @Override
+    public void updateArticle(Long id, String brand, String description, double price, int quantity, String catName, String image) {
+        articleRepository.save(new Article(id,brand,description,price,quantity,categoryRepository.findByName(catName), image));
+    }
 	
 	@Override
 	public List<Category> getAllCategories(){
@@ -104,7 +118,6 @@ public class IBusinessImpl implements IBusiness{
 			cart.put(id, cart.get(id)-1);
 		}else if(cart.get(id)==1){
 			cart.remove(id);
-		/* if(cart.get(id)>0) { cart.put(id, cart.get(id)-1); */
 		}
 	}
 	
@@ -113,5 +126,16 @@ public class IBusinessImpl implements IBusiness{
 	 */
 	public HashMap<Long, Integer> getCart() {
 		return cart;
+	}
+	
+	/**
+	 * Enregistre la commande en base et vide le panier
+	 */
+	public void placeCommande() {
+		
+//		cart.forEach((idArticle,quantity)-> detailsRepository.save(new Details()));
+//		
+//		commandeRepository.save();
+//		cart.clear();
 	}
 }

@@ -22,14 +22,16 @@ public class Article implements Serializable {
 	private static final long serialVersionUID = 1L; 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id;
+	
+	@NotNull
+	@Size(min=1,max=20)
+	private String brand;
 
 	@NotNull
 	@Size(min=1,max=20)
 	private String description;
 
-	@NotNull
-	@Size(min=2,max=20)
-	private String brand;
+
 
 	@DecimalMin("50")
 	private double price;
@@ -53,12 +55,12 @@ public Article(String brand,String description,  double price) {
 	
 }
 
-//public Article(String brand,String description,  double price,int quantity,Category category,String image) {
-//	this.brand = brand;
-//	this.description = description;
-//	this.price = price;
-//	this.quantity=quantity;
-//	this.category=category;
-//	this.image=image;
-//}
+public Article(String brand,String description,  double price,int quantity,Category category,String image) {
+	this.brand = brand;
+	this.description = description;
+	this.price = price;
+	this.quantity=quantity;
+	this.category=category;
+	this.image=image;
+}
 }

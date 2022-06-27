@@ -1,5 +1,6 @@
 package fr.fms.entities;
 
+import java.io.Serializable;
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -15,7 +16,8 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Data @NoArgsConstructor @AllArgsConstructor
-public class User {
+public class User implements Serializable{
+	private static final long serialVersionUID = 1L; 
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
 	private Long id;
 	//private String firstName;
