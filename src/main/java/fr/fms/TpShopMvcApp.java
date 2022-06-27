@@ -30,7 +30,7 @@ public class TpShopMvcApp implements CommandLineRunner  {
 	@Override
 	public void run(String... args) throws Exception {
 //	articleRepository.save(new Article(null,"Samsung"," S8",250,10,1));
-//		articleRepository.findAll().forEach(a -> System.out.println(a));
+//	articleRepository.findAll().forEach(a -> System.out.println(a));
 		
 		generateValues();
 	}
