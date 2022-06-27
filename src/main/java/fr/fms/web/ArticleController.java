@@ -108,35 +108,14 @@ public class ArticleController {
 		articleRepository.deleteById(id);
 		return "redirect:/articles?page="+page+"&keyword="+keyword;
 	}
-	@PostMapping("/save")
-	public String save( @Valid  Article article, BindingResult bindingResult) {
-		if(bindingResult.hasErrors()) return "article";
-		articleRepository.save(article);
-		return"redirect:/articles";
-	}
-	@GetMapping("/article")
-	public String article(Model model) {
-		List<Category> category= categoryRepository.findAll();
-		model.addAttribute("listCategory",category);
-		model.addAttribute("article",new Article());
-		return "article";
-	}
-	@GetMapping("/edit")
-	public String edit(Long id, Model model) {
-		List<Category> category= categoryRepository.findAll();
-		model.addAttribute("listCategory",category);
-		Article article = articleRepository.findById(id).get();
-		model.addAttribute("article", article);
-		return "edit";
 
-	}
 	//	@PostMapping("/update")
 	//	public String update(@Valid  Article article, BindingResult bindingResult){
 	//		if(bindingResult.hasErrors()) return "article";
 	//		articleRepository.save(article);
 	//		return"redirect:/articles";
 	//	}
-
+	
 	@PostMapping("/save")
 	public String save(@Valid Article article, BindingResult bindingResult) {
 		if (bindingResult.hasErrors())

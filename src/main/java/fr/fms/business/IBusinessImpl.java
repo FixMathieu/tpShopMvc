@@ -23,9 +23,6 @@ public class IBusinessImpl implements IBusiness{
 	public static HashMap<Long, Integer> cart = new HashMap<Long, Integer>();
 	
 	@Autowired
-	public static HashMap<Long, Integer> cart;
-	
-	@Autowired
 	public ArticleRepository articleRepository;
 	
 	@Autowired
