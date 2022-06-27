@@ -11,13 +11,14 @@ import javax.persistence.OneToMany;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data @NoArgsConstructor @AllArgsConstructor @ToString
 public class Category {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-	private Long id;
-	private String name;
+private Long id;
+	String name;
 
 	@OneToMany(mappedBy ="category")
 	private Collection<Article> articles;

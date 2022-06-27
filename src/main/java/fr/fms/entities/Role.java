@@ -11,19 +11,16 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
-public class Customer {
+@Data @NoArgsConstructor @AllArgsConstructor 
+public class Role {
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)	
-private Long id;
-private String adress;
-private String email;
-private String firstName;
-private String lastName;
-private long phone;
+private String role;
+
+	
 
 	@Override
 	public String toString() {
-		return firstName + " " + lastName  ;
+		return role ;
 	}
 	
 }
