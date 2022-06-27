@@ -40,11 +40,14 @@ public class ArticleController {
 	ArticleRepository articleRepository;
 	@Autowired
 	IBusinessImpl job;
+	@Autowired
+	CustomerRepository customerRepository;
 
 	@GetMapping("/")
 	public String homePage() {
-	@Autowired
-	CustomerRepository customerRepository;
+		return "index";
+	}
+
 
 	@GetMapping("/index")
 	public String index(Model model) {
@@ -163,11 +166,7 @@ public void nameAuth(Model model) {
 		
 	}
 	
-	
-	 @GetMapping("/login")
-	    public String login() {
-	        return "login";
-	    }
+
 	    @GetMapping("/logout")
 	    public String logout(HttpServletRequest request, HttpServletResponse response) {
 	        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
@@ -191,5 +190,19 @@ public void nameAuth(Model model) {
 			job.placeCommande();
 			
 			return "redirect:/articles";
+		}
+		
+		public class LoginController {
+			@GetMapping("/login")
+			public String login(Model model) {
+				nameAuth(model);
+				return "login";
+			}
+
+			@GetMapping("/loginAuth")
+			public String loginAuth(Model model) {
+				nameAuth(model);
+				return "redirect:/index";
+			}
 		}
 }
