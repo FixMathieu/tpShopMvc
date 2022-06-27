@@ -18,7 +18,7 @@ background-size: cover;">
 	<nav class="navbar navbar-primary" style="background-color: rgba(0, 0, 0, 0.5)">
 		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand " href="#">PignonLine</a>
+			<a class="navbar-brand " href="#">PignOnLine</a>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a th:href="@{/index}">HomePage</a></li>
@@ -31,7 +31,7 @@ background-size: cover;">
 			<li><a  th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a></li>
 			<li class="authName" style="color:white" sec:authorize="isAuthenticated()">Bonjour :</li>
 			<li class="authName" style="color:white"  sec:authorize="isAuthenticated()" th:text="${auth}"></li>
-			<li><a  th:href="@{/logout}" sec:authorize="isAuthenticated()"> logOut</a></li>
+			<li><a  th:href="@{/logout}" sec:authorize="isAuthenticated()"> Logout</a></li>
 			
 			</ul>
 		</div>
@@ -41,8 +41,8 @@ background-size: cover;">
 <footer>
 
   <div class="text-white text-center p-3" style="background-color:rgba(0, 0, 0, 0.5); color: white">
-  <h3>PignonLine</h3>
-  <p>PignonLine is an OnlineShop created by ThePignons</p>
+  <h3>PignOnLine</h3>
+  <p>PignOnLine is an OnlineShop created by ThePignons</p>
     © 2022 Copyright:
     <a>ThePignons</a>
   </div>
