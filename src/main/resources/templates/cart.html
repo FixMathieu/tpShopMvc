@@ -45,29 +45,7 @@
 				</tr>
 
 			</table>
-
-
-			</tr>
-			<tr th:each="a:${listArticle}">
-			
-				<td th:text="${a.id}"></td>
-				<td th:text=${a.brand}></td>
-				<td th:text="${a.description}"></td>
-				<td th:text="${a.price}"></td>
-				<td th:text="${quantities.get(a.id)}"></td>
-				<td th:text="${a.category.name}"></td>
-				<td><img class="pictureArticles" style="width: 50px;"
-					alt="image" src="../static/images/+${a.image}" 
-					th:src="@{${'/images/'+a.image}}"width="50px"/></td>
-				<td><a  class="btn btn-danger"
-					th:href="@{/removeCart(id=${a.id})}">Remove</a></td>
-					
-			</tr>
-			
-			
-
-		</table>
-		
+	
 		<div>
 			<a class="btn btn-primary" th:href="@{/commande}">Order</a>
 		</div>

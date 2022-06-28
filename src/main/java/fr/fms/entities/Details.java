@@ -5,6 +5,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -19,5 +20,11 @@ public class Details implements Serializable{
 private Long id;
 private double price;
 private int quantity;
+
+@ManyToOne
+private Article article;
+
+@ManyToOne
+private Commande commande;
 
 }

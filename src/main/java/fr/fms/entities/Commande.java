@@ -3,6 +3,7 @@ package fr.fms.entities;
 import java.util.Collection;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,8 +30,14 @@ public class Commande {
 	@ManyToOne
 	private Customer customer;
 	
-	@OneToMany
+	@OneToMany(mappedBy ="commande")
 	private Collection<Details> details;
 	
+	public Commande(Long id, Date date, double totalAmount, Customer customer) {
+		this.id=id;
+		this.date=date;
+		this.totalAmount=totalAmount;
+		this.customer=customer;		
+	}
 
 }

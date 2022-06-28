@@ -1,7 +1,9 @@
 package fr.fms.business;
 
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map.Entry;
 
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,7 @@ import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Commande;
+import fr.fms.entities.Customer;
 import fr.fms.entities.Details;
 import fr.fms.entities.User;
 
@@ -53,7 +56,7 @@ public class IBusinessImpl implements IBusiness{
 	
     @Override
     public void createArticle(String brand,String description, double price,int quantity,Category category, String image) {
-        articleRepository.save(new Article(null,brand,description,price,quantity,category, image));
+        articleRepository.save(new Article(brand,description,price,quantity,category, image));
     }
 	
 	@Override
@@ -131,11 +134,37 @@ public class IBusinessImpl implements IBusiness{
 	/**
 	 * Enregistre la commande en base et vide le panier
 	 */
-	public void placeCommande() {
+	public Commande placeCommande(Customer customer) {
 		
-//		cart.forEach((idArticle,quantity)-> detailsRepository.save(new Details()));
-//		
-//		commandeRepository.save();
+//		cart.forEach((idArticle,quantity)-> 
+//		detailsRepository.save(new Details(null, idArticle,price, quantity)));
+		// Details details = new Details();
+		
+		
+		Commande commande = new Commande();
+		commandeRepository.save(commande);
+		double totalAmount = 0;
+		
+		for(Entry<Long, Integer> entry : cart.entrySet()){		
+			Article article = articleRepository.findById(entry.getKey()).get();
+			Details details = new Details();
+			details.setPrice(article.getPrice());
+			details.setQuantity(entry.getValue());
+			details.setCommande(commande);
+			details.setArticle(article);
+
+//			double price = article.getPrice();
+//			int quantity = entry.getValue();
+			detailsRepository.save(details);
+			double detailAmount = article.getPrice()*entry.getValue();
+			totalAmount+=detailAmount;
+		}
+		commande.setDate(new Date());
+		commande.setTotalAmount(totalAmount);
+		commande.setCustomer(customer);
+		 commandeRepository.save(commande);
+	
+		 return commande;
 //		cart.clear();
 	}
 }

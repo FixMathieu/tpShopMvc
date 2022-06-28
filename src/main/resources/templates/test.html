@@ -12,8 +12,12 @@
 
 	<div layout:fragment="content">
 		<div class="container">
-		
-			<h1 class="title">Bienvenue sur mon site demo </h1>
+		<ul class="nav navbar-nav" th:each="d:${details}">
+						<li ><a th:text="${d.id}"></a></li>
+						<li ><a th:text="${d.price}"></a></li>
+						<li ><a th:text="${d.quantity}"></a></li>
+						<li ><a th:text="${d.article.description}"></a></li>
+					</ul>
 			
 			
 	

@@ -2,6 +2,7 @@ package fr.fms.web;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,11 +27,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CommandeRepository;
 import fr.fms.dao.CustomerRepository;
+import fr.fms.dao.DetailsRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
 import fr.fms.entities.Commande;
 import fr.fms.entities.Customer;
+import fr.fms.entities.Details;
 
 @Controller
 public class ArticleController {
@@ -42,6 +46,10 @@ public class ArticleController {
 	IBusinessImpl job;
 	@Autowired
 	CustomerRepository customerRepository;
+	@Autowired
+	DetailsRepository detailsRepository;
+	@Autowired
+	CommandeRepository commandeRepository;
 
 	@GetMapping("/")
 	public String homePage() {
@@ -66,7 +74,6 @@ public class ArticleController {
 				.collect(Collectors.toList());
 
 		model.addAttribute("quantities", job.getCart());
-
 		model.addAttribute("listArticle", articlesInCart);
 		return "cart";
 	}
@@ -186,10 +193,10 @@ public void nameAuth(Model model) {
 		public String submitCustomer(@Valid Customer customer, BindingResult bindingResult) {
 			if(bindingResult.hasErrors()) return "commande";
 			customerRepository.save(customer);
-			
-			job.placeCommande();
+			Commande commande = job.placeCommande(customer);
 			
 			return "redirect:/articles";
+			//return "redirect:/test";
 		}
 		
 	
@@ -204,5 +211,15 @@ public void nameAuth(Model model) {
 				nameAuth(model);
 				return "redirect:/index";
 			}
-		
+			
+//			@GetMapping("/test")
+//			public String test(Model model) {
+//				List<Commande> commande = commandeRepository.findById(commandeId);
+//				List<Details> details = detailsRepository.findByCommandeId(commandeId);
+//				model.addAttribute("commandes",commande);
+//				model.addAttribute("details",details);
+//				return "test";
+//				
+//				
+//			}
 }

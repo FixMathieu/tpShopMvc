@@ -1,12 +1,14 @@
 package fr.fms.entities;
 
 import java.io.Serializable;
+import java.util.Collection;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -41,6 +43,9 @@ public class Article implements Serializable {
 	@ManyToOne
 	private Category category;
 
+//	@OneToMany (mappedBy ="article")
+//	private Collection<Details> details;
+	
 	private String image;
 
 public Article(String image) {
