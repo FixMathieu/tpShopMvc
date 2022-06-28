@@ -163,8 +163,8 @@ public class IBusinessImpl implements IBusiness{
 		commande.setTotalAmount(totalAmount);
 		commande.setCustomer(customer);
 		 commandeRepository.save(commande);
-	
+		 cart.clear();
 		 return commande;
-//		cart.clear();
+		
 	}
 }

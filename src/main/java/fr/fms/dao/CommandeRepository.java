@@ -8,5 +8,4 @@ import fr.fms.entities.Commande;
 import fr.fms.entities.Details;
 
 public interface CommandeRepository extends JpaRepository<Commande, Long> {
-	public List<Commande> findById(long id);
 }

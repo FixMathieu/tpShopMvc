@@ -65,8 +65,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	// Gestion des accès
 		
-		http.authorizeRequests().antMatchers("/index","/articles","/addCart","/login","/cart").permitAll();
-	      
+		http.authorizeRequests().antMatchers("/index","/articles","/addCart","/login","/cart").permitAll();	      
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/article","/delete","/save","/edit","/login","/test").hasRole("ADMIN");
 		http.authorizeRequests().antMatchers("/cart","/addCart","/removeCart","/login","/test").hasRole("USER");
 //		

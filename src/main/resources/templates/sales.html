@@ -19,10 +19,9 @@
 						<a th:text="${commande.customer.email}"></a>
 						</h1>
 		<ul class="nav navbar-nav" th:each="d:${details}">
-						<li ><a th:text="${d.id}"></a></li>
+					<li ><a th:text="${d.article.description}"></a></li>
 						<li ><a th:text="${d.price}"></a></li>
 						<li ><a th:text="${d.quantity}"></a></li>
-						<li ><a th:text="${d.article.description}"></a></li>
 					</ul>
 					
 					
