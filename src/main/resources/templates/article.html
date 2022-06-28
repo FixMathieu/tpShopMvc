@@ -4,7 +4,7 @@
 	layout:decorate="layout">
 <head>
 <meta charset="UTF-8">
-<title>Add article</title>
+<title>Ajout article</title>
 <link rel="stylesheet" href="../static/css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}">
 </head>
@@ -13,7 +13,7 @@
 		<div class="container">
 			<div class="col-md-4 col-xs-8">
 				<div class="panel panel-primary">
-					<div class="panel-heading">Type a new article</div>
+					<div class="panel-heading">Enter New Article</div>
 					<div class="panel-body">
 						<form th:action="@{/save}" method="POST">
 							<div class="form-group">
@@ -37,18 +37,23 @@
 									th:errors="${article.price}"></span>
 
 							</div>
-							<div class="from-group">
+						<div class="from-group">
 								<label class="control-label">Category</label> <select
 									class="form-control" name="category"
 									th:value="${article.category}">
-									<option selected>Select...</option>
-									<option th:each="c:${listCategory}"
-											th:text="${c.name}"></option>
+									<option th:each="c:${listCategory}" th:text="${c.name}"
+										th:value="${c.id}"></option>
 								</select>
 							</div>
+
+
+						
 							<div class="form-group">
-								<label for="variableImage" >Select picture</label> <input
-									type="file" class="form-control-file" id="variableImage">
+								<label class="control-label">Picture</label> <select
+									class="form-control" name="image" th:value="${article.image}">
+									<option th:each="a:${listArticle}" th:text="${a.image}" th:value="${a.image}">
+									</option>
+								</select>
 							</div>
 							<button type="submit" class="btn btn-primary">Save</button>
 						</form>

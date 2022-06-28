@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"	th:href="@{css/bootstrap.min.css}">
+<link rel="stylesheet" href="../static/css/styles.css"			th:href="@{css/styles.css}">
+<title>Page d'acceuil</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="container">
+		<ul class="nav navbar-nav" th:each="d:${details}">
+						<li ><a th:text="${d.id}"></a></li>
+						<li ><a th:text="${d.price}"></a></li>
+						<li ><a th:text="${d.quantity}"></a></li>
+						<li ><a th:text="${d.article.description}"></a></li>
+					</ul>
+			
+			
+	
+	
+			
+		</div>
+
+	</div>
+
+</body>
+
+</html>

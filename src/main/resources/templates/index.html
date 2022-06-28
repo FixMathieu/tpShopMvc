@@ -1,26 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://tymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="layout">
+	layout:decorate="layout"
+	xmlns:sec="http://ww.thymeleaf.org/extras/spring-security5">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="../static/css/bootstrap.min.css"	th:href="@{css/bootstrap.min.css}">
-<link rel="stylesheet" href="../static/css/styles.css"			th:href="@{css/styles.css}">
-<title>Home page</title>
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+<link rel="stylesheet" href="../static/css/styles.css"
+	th:href="@{css/styles.css}">
+<title>Page d'acceuil</title>
 </head>
 <body>
 
 	<div layout:fragment="content">
 		<div class="container">
-	
-			<h1 class="title" style="color:black; position:center">Welcome to our Online-Shop</h1>
-<!-- 			<img class="bg-img" src="../images/boutique.jpg" alt="image"> -->
-  </div>
-</div>
-<!-- 			<div > -->
-<!-- 				<img class="picture" alt="coucou" src="../static/images/boutique.jpg" th:src="@{images/boutique.jpg}"> -->
-<!-- 			</div> -->
-			
+			<div class="picture">
+				<div class="titleName">
+					<h1 >Welcome to PignOnLine-Shop</h1>
+				</div>
+
+
+			</div>
+
+
+
+
+
+
+
+
+
+		</div>
+
+	</div>
 
 </body>
 

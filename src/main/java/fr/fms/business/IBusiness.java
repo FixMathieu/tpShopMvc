@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.User;
 
 public interface IBusiness {
 
@@ -16,8 +17,11 @@ public interface IBusiness {
 	public void updateArticle(Long id, String description, String brand, double price, int quantity, String catName, String image);
 	Page<Article> getArticlesPages(Pageable pageable) throws Exception;
 	
+	public List<User> getAllUsers();
+	
 	public List<Category> getAllCategories();
 	public void createCategory(String name);
 	public void deleteCategoryById(Long id);
 	public void updateCategory(Long id, String name);
+	
 }
