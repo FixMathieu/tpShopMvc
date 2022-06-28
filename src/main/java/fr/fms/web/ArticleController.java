@@ -167,7 +167,7 @@ public void nameAuth(Model model) {
 	
 	@GetMapping("/commande")
 	public String commande(Model model) {
-		
+		nameAuth(model);
 		model.addAttribute("customer",new Customer());		
 		return "commande";
 		
@@ -213,6 +213,7 @@ public void nameAuth(Model model) {
 			
 			@GetMapping("/sales")
 			public String test(Model model, @RequestParam(name = "commandeId") long commandeId){
+				nameAuth(model);
 				Commande commande = commandeRepository.findById(commandeId).get();
 				List<Details> details = detailsRepository.findByCommandeId(commandeId);
 				model.addAttribute("commande",commande);
