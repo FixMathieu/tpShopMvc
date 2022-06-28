@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		   http.formLogin().loginPage("/login.html").loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll();
+		   http.formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll();
 //		http.formLogin().loginPage("/login.html");							//   --------------------------> page de login perso
 //		http.formLogin();												//   --------------------------> page de login generée
 	

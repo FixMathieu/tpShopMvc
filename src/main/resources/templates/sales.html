@@ -12,17 +12,21 @@
 
 	<div layout:fragment="content">
 		<div class="container">
+		<h1>Date - le <a th:text="${commande.date}"></a></h1>
+		<h1>Commande- numero <a th:text="${commande.id}"></a></h1>
+		<h1>Client : 	<a th:text="${commande.customer.firstName}"></a>
+						<a th:text="${commande.customer.lastName}"></a>
+						<a th:text="${commande.customer.email}"></a>
+						</h1>
 		<ul class="nav navbar-nav" th:each="d:${details}">
 						<li ><a th:text="${d.id}"></a></li>
 						<li ><a th:text="${d.price}"></a></li>
 						<li ><a th:text="${d.quantity}"></a></li>
 						<li ><a th:text="${d.article.description}"></a></li>
 					</ul>
-			
-			
-	
-	
-			
+					
+					
+		<h1>Commande- numero <a th:text="${commande.totalAmount}"></a></h1>
 		</div>
 
 	</div>

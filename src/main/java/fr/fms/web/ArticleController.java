@@ -196,7 +196,7 @@ public void nameAuth(Model model) {
 			Commande commande = job.placeCommande(customer);
 			
 			return "redirect:/articles";
-			//return "redirect:/test";
+			//return "redirect:/sales";
 		}
 		
 	
@@ -212,13 +212,13 @@ public void nameAuth(Model model) {
 				return "redirect:/index";
 			}
 			
-//			@GetMapping("/test")
+//			@GetMapping("/sales")
 //			public String test(Model model) {
-//				List<Commande> commande = commandeRepository.findById(commandeId);
+//				Commande commande = commandeRepository.findById(commandeId).get();
 //				List<Details> details = detailsRepository.findByCommandeId(commandeId);
-//				model.addAttribute("commandes",commande);
+//				model.addAttribute("commande",commande);
 //				model.addAttribute("details",details);
-//				return "test";
+//				return "sales";
 //				
 //				
 //			}
