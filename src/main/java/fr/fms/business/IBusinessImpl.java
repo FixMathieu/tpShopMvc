@@ -167,4 +167,13 @@ public class IBusinessImpl implements IBusiness{
 		 return commande;
 		
 	}
+	
+	public double getTotalAmount() {
+		double totalAmount=0;
+		for(Entry<Long, Integer> entry : cart.entrySet()){	
+			Article article = articleRepository.findById(entry.getKey()).get();
+			totalAmount += article.getPrice()*entry.getValue();
+		}
+		return totalAmount;
+	}
 }
