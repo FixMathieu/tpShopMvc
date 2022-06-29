@@ -220,4 +220,16 @@ public void nameAuth(Model model) {
 				model.addAttribute("details",details);
 				return "sales";
 			}
+			@GetMapping("/myOrder")
+			public String myOrder(Model model) {
+				nameAuth(model);
+				long userId= job.userCurrent().getId();
+				List<Commande> commandes=commandeRepository.findByUserId(userId);
+				model.addAttribute("listCommande",commandes);
+//				List<Commande>commandes = commandeRepository.findByCustomerId(customerId);
+//				List<Details> details = detailsRepository.findByCommandeId(commandeId);
+//				model.addAttribute("listCommande",commandes);
+//				model.addAttribute("listDetails",details);
+				return "myOrder";
+			}
 }

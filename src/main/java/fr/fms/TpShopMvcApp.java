@@ -97,11 +97,11 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		*/
 		
 		
-		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"ADMIN",true));
-		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"USER",true));
-		job.userRepository.save(new User(null,"Tristan",securityConfig.encodePassword("fms2022"),"USER",true));
-		job.userRepository.save(new User(null,"Martial",securityConfig.encodePassword("fms2022"),"USER",true));
-		job.userRepository.save(new User(null,"Eric",securityConfig.encodePassword("fms2022"),"USER",true));
+		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"ADMIN",true,null));
+		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"USER",true,null));
+		job.userRepository.save(new User(null,"Tristan",securityConfig.encodePassword("fms2022"),"USER",true,null));
+		job.userRepository.save(new User(null,"Martial",securityConfig.encodePassword("fms2022"),"USER",true,null));
+		job.userRepository.save(new User(null,"Eric",securityConfig.encodePassword("fms2022"),"USER",true,null));
 		
 		job.roleRepository.save(new Role(null,"USER"));
 		job.roleRepository.save(new Role(null,"ADMIN"));

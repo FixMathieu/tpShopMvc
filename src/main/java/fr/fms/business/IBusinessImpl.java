@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import fr.fms.dao.ArticleRepository;
@@ -47,7 +49,16 @@ public class IBusinessImpl implements IBusiness{
 
 	@Autowired
 	public RoleRepository roleRepository;
+	@Autowired
+	public static User userCurrent;
 	
+	
+	public void setUserCurrent(User user) {
+		userCurrent=user;
+	}
+	public User getUserCurrent() {
+		return userCurrent;
+	}
 	@Override
 	@PostConstruct
 	public List<Article> getAllArticles() {
@@ -104,12 +115,25 @@ public class IBusinessImpl implements IBusiness{
 	 * @param id de l'article à ajouter
 	 */
 	public void addToCart(Long id) {
-		
+		Authentication authentified = SecurityContextHolder.getContext().getAuthentication();
+		System.out.println(authentified);
 		if(cart.get(id) != null) {
 		cart.put(id, cart.get(id)+1);
 		}else {
 			cart.put(id, 1);
 		}
+	}
+	
+//	public void userCurrentId(String userName) {
+//	String userNameAuth= SecurityContextHolder.getContext().getAuthentication().getName();
+////	String userNameBdd = userRepository.findByUsername(userName);
+////	if(user)
+//		
+//	}
+	public User userCurrent() {
+		String userNameAuth= SecurityContextHolder.getContext().getAuthentication().getName();
+		User userNameBdd = userRepository.findByUsername(userNameAuth).get(0);
+		return userNameBdd;
 	}
 	
 	/**
@@ -145,6 +169,7 @@ public class IBusinessImpl implements IBusiness{
 		commandeRepository.save(commande);
 		double totalAmount = 0;
 		
+		
 		for(Entry<Long, Integer> entry : cart.entrySet()){		
 			Article article = articleRepository.findById(entry.getKey()).get();
 			Details details = new Details();
@@ -161,6 +186,7 @@ public class IBusinessImpl implements IBusiness{
 		}
 		commande.setDate(new Date());
 		commande.setTotalAmount(totalAmount);
+		commande.setUser(userCurrent());
 		commande.setCustomer(customer);
 		 commandeRepository.save(commande);
 		 cart.clear();
@@ -169,6 +195,7 @@ public class IBusinessImpl implements IBusiness{
 	}
 	
 	public double getTotalAmount() {
+		
 		double totalAmount=0;
 		for(Entry<Long, Integer> entry : cart.entrySet()){	
 			Article article = articleRepository.findById(entry.getKey()).get();

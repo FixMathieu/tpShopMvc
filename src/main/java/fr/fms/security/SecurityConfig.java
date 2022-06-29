@@ -66,8 +66,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// Gestion des accès
 			
 	    http.authorizeRequests()
-			.antMatchers("/commande","/delete","/save","/edit").hasRole("ADMIN")
-			.antMatchers("/commande").hasRole("USER")
+			.antMatchers("myOrder","/commande","/delete","/save","/edit").hasRole("ADMIN")
+			.antMatchers("myOrder","/commande").hasRole("USER")
 			.anyRequest().permitAll();
 		  
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée

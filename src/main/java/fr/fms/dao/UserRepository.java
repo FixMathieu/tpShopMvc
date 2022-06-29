@@ -10,4 +10,7 @@ import fr.fms.entities.User;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 	public List<User> findAll();
+
+	public List<User> findByUsername(String userNameAuth);
+	
 }

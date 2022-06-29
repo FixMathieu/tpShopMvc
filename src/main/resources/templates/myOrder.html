@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+<link rel="stylesheet" href="../static/css/styles.css"
+	th:href="@{css/styles.css}">
+<title>Sales</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="container" style="background-color: white">
+			<div class="userOrder">
+				<h1 style="background-color: rgba(117, 190, 218); color: white">
+					Order by <span th:text="${auth}"></span>
+				</h1>
+			</div>
+
+
+			<table class="table">
+				<tr style="background-color: rgba(117, 190, 218); color: white">
+
+					<th>Number Order</th>
+					<th>Date order</th>
+					<th>Amount</th>
+					<th>Order for</th>
+
+				</tr>
+				<tr th:each="c:${listCommande}">
+					<th th:text="${c.id}"></th>
+					<th th:text="${c.date}"></th>
+					<th th:text="${c.totalAmount}"></th>
+					<th th:text="${c.customer.lastName}+' '+${c.customer.firstName}"></th>
+
+				</tr>
+			</table>
+
+			<!-- 			<h2> -->
+			<!-- 				Date : <span th:text="${commande.date}" style="color:rgba(117, 190, 218)"></span> -->
+			<!-- 			</h2> -->
+			<!-- 			<h2> -->
+			<!-- 				Order-number : <span th:text="${commande.id}" style="color:rgba(117, 190, 218)"></span> -->
+			<!-- 			</h2> -->
+			<!-- 			<h2> -->
+			<!-- 				Customer : <span th:text="${commande.customer.firstName}" style="color:rgba(117, 190, 218)"></span><span -->
+			<!-- 					th:text="${commande.customer.lastName}" style="color:rgba(117, 190, 218)"></span> -->
+			<!-- 			</h2> -->
+			<!-- 			<h2> -->
+			<!-- 				Email <span th:text="${commande.customer.email}" style="color:rgba(117, 190, 218)"></span> -->
+			<!-- 			</h2> -->
+
+
+			<!-- 			<h2>Details of the order :</h2> -->
+			<!-- 			<div> -->
+			<!-- 				<table class="table"> -->
+			<!-- 					<tr style="background-color: rgba(117, 190, 218); color:white" > -->
+
+			<!-- 						<th>Marque</th> -->
+			<!-- 						<th>Description</th> -->
+			<!-- 						<th>Quantité</th> -->
+			<!-- 						<th>Prix</th> -->
+			<!-- 					</tr> -->
+			<!-- 					<tr th:each="d:${listDetails}"> -->
+			<!-- 						<th th:text="${d.article.brand}"></th> -->
+			<!-- 						<th th:text="${d.article.description}"></th> -->
+			<!-- 						<th th:text="${d.quantity}"></th> -->
+			<!-- 						<th th:text="${d.price}"></th> -->
+			<!-- 					</tr> -->
+			<!-- 				</table> -->
+
+			<!-- 			</div> -->
+
+
+
+			<!-- 			<h2> -->
+			<!-- 				Total : <span th:text="${commande.totalAmount}" style="color:rgba(117, 190, 218)"></span> -->
+			<!-- 			</h2> -->
+		</div>
+
+	</div>
+
+</body>
+
+</html>

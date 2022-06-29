@@ -67,3 +67,12 @@ footer {
 #loginPage{
 	display:flex;
 }
+.userOrder{
+	display:flex;
+	justify-content:center;
+	margin:5px;
+}
+.userOrder h1{
+
+	padding:15px;
+}

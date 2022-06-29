@@ -29,6 +29,9 @@ public class User implements Serializable{
 	private String password;
 	private String role;
 	private boolean active;
+	
+@OneToMany(mappedBy="user")
+private Collection<Commande>commandes;
 
 	@Override
 	public String toString() {

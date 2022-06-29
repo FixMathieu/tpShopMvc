@@ -33,11 +33,16 @@ public class Commande {
 	@OneToMany(mappedBy ="commande")
 	private Collection<Details> details;
 	
+	@ManyToOne
+	private User user;
+	
+	
 	public Commande(Long id, Date date, double totalAmount, Customer customer) {
 		this.id=id;
 		this.date=date;
 		this.totalAmount=totalAmount;
 		this.customer=customer;		
+		
 	}
 
 }
