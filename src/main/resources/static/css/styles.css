@@ -26,7 +26,14 @@ body {
 	width: 100%;
 	
 }
-
+.titleNameFooter{
+	display:flex;
+	justify-content:center;
+	
+}
+#logoFoot{
+	padding-right:5px;
+}
 .authName{
 	margin-top:15px;
 	margin-right:5px;
