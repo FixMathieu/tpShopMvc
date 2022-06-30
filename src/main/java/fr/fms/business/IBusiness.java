@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
@@ -23,5 +24,5 @@ public interface IBusiness {
 	public void createCategory(String name);
 	public void deleteCategoryById(Long id);
 	public void updateCategory(Long id, String name);
-	
+
 }

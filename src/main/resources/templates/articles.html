@@ -43,13 +43,13 @@
 				</form>
 			</div>
 			<div class="col-sm-2" sec:authorize="hasRole('ROLE_ADMIN')">
-				<a class="btn btn-success" th:href="@{/article}"> Add
-					article </a>
+<!-- 				<a class="btn btn-success" th:href="@{/article}"> Add -->
+<!-- 					article </a> -->
 			</div>
 		</div>
 		<table class="table">
 			<tr bgcolor="white">
-				<th>Id</th>
+				
 				<th>Marque</th>
 				<th>Description</th>
 				<th>Prix</th>
@@ -60,7 +60,7 @@
 
 			</tr>
 			<tr bgcolor="white" th:each="a:${listArticle}">
-				<td th:text="${a.id}"></td>
+				
 				<td th:text=${a.brand}></td>
 				<td th:text="${a.description}"></td>
 				<td th:text="${a.price}"></td>

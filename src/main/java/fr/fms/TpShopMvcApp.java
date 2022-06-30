@@ -35,7 +35,7 @@ public class TpShopMvcApp implements CommandLineRunner  {
 	public void run(String... args) throws Exception {
 //	articleRepository.save(new Article(null,"Samsung"," S8",250,10,1));
 //	articleRepository.findAll().forEach(a -> System.out.println(a));
-		
+//		
 		generateValues();
 	}
 	
@@ -77,26 +77,6 @@ public class TpShopMvcApp implements CommandLineRunner  {
 		job.articleRepository.save(new Article("L43","Philips",450,1,tv, "philips.jpg"));
 
 		
-		
-		
-		/*	
-		job.articleRepository.save(new Article("XL 5","IPad",300,1,tablet, "testimage1.png"));
-		job.articleRepository.save(new Article("XL 7","IPad",500,1,tablet, "testimage1.png"));
-		
-		
-		job.articleRepository.save(new Article("MG30","Canon",50,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article("MG50","Canon",60,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article("800","HP",50,1,printer, "testimage1.png"));
-		job.articleRepository.save(new Article("3T","Epson",100,1,printer, "testimage1.png"));
-		
-		job.articleRepository.save(new Article("7","GoPro",150,1,camera, "testimage1.png"));
-		job.articleRepository.save(new Article("10","GoPro",200,1,camera, "testimage1.png"));
-		
-		job.articleRepository.save(new Article("HT","Panasonic",1500,1,tv, "testimage1.png"));
-		job.articleRepository.save(new Article("L43","Philips",450,1,tv, "testimage1.png"));	
-		*/
-		
-		
 		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"ADMIN",true,null));
 		job.userRepository.save(new User(null,"Mathieu",securityConfig.encodePassword("fms2022"),"USER",true,null));
 		job.userRepository.save(new User(null,"Tristan",securityConfig.encodePassword("fms2022"),"USER",true,null));
@@ -109,9 +89,9 @@ public class TpShopMvcApp implements CommandLineRunner  {
 
 	}
 	
-	@RequestMapping(value = "/")
-	public String index() {
-	return "index";
-	}
+//	@RequestMapping(value = "/")
+//	public String index() {
+//	return "index";
+//	}
 	
 }

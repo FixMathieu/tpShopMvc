@@ -42,6 +42,14 @@
 					</form>
 
 				</div>
+									<form th:action="@{/login}"  method="post">
+						<div th:if="${param.error}">
+						<div class="alert alert-danger">
+						<!-- <span th:text="#{login.error}"></span>  -->
+						<span>Login or password error</span>
+						</div>
+						</div>
+					</form>
 			</div>
 		</div>
 
