@@ -1,8 +1,7 @@
 package fr.fms.web;
 
-import java.security.Principal;
+
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -15,14 +14,15 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
@@ -43,7 +43,7 @@ public class ArticleController {
 	@Autowired
 	ArticleRepository articleRepository;
 	@Autowired
-	IBusinessImpl job;
+	IBusinessImpl businessImpl;
 	@Autowired
 	CustomerRepository customerRepository;
 	@Autowired
@@ -70,10 +70,10 @@ public class ArticleController {
 	public String cart(Model model) {
 		nameAuth(model);
 		List<Article> articles = articleRepository.findAll();
-		List<Article> articlesInCart = articles.stream().filter(article -> job.getCart().get(article.getId()) != null)
+		List<Article> articlesInCart = articles.stream().filter(article -> businessImpl.getCart().get(article.getId()) != null)
 				.collect(Collectors.toList());
 
-		model.addAttribute("quantities", job.getCart());
+		model.addAttribute("quantities", businessImpl.getCart());
 		model.addAttribute("listArticle", articlesInCart);
 		return "cart";
 	}
@@ -81,7 +81,7 @@ public class ArticleController {
 	@GetMapping("/addCart")
 	public String addCart(Long id) {
 
-		job.addToCart(id);
+		businessImpl.addToCart(id);
 
 		return "redirect:/articles";
 	}
@@ -89,7 +89,7 @@ public class ArticleController {
 	@GetMapping("/removeCart")
 	public String removeCart(Long id) {
 
-		job.removeFromCart(id);
+		businessImpl.removeFromCart(id);
 
 		return "redirect:/cart";
 	}
@@ -193,7 +193,7 @@ public void nameAuth(Model model) {
 		public String submitCustomer(@Valid Customer customer, BindingResult bindingResult) {
 			if(bindingResult.hasErrors()) return "commande";
 			customerRepository.save(customer);
-			Commande commande = job.placeCommande(customer);
+			Commande commande = businessImpl.placeCommande(customer);
 			
 			return "redirect:/sales?commandeId=" + commande.getId();
 		}
@@ -223,7 +223,7 @@ public void nameAuth(Model model) {
 			@GetMapping("/myOrder")
 			public String myOrder(Model model) {
 				nameAuth(model);
-				long userId= job.userCurrent().getId();
+				long userId= businessImpl.userCurrent().getId();
 				List<Commande> commandes=commandeRepository.findByUserId(userId);
 				model.addAttribute("listCommande",commandes);
 //				List<Commande>commandes = commandeRepository.findByCustomerId(customerId);
@@ -231,5 +231,15 @@ public void nameAuth(Model model) {
 //				model.addAttribute("listCommande",commandes);
 //				model.addAttribute("listDetails",details);
 				return "myOrder";
+			}
+			
+			@RequestMapping(value = "/")
+			public String index() {
+				return "index";
+			}
+			
+			@RequestMapping("/greating")
+			public @ResponseBody String greating() {
+				return businessImpl.great();
 			}
 }

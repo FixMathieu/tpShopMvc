@@ -53,7 +53,6 @@
 				<th>Marque</th>
 				<th>Description</th>
 				<th>Prix</th>
-				<th>Quantité</th>
 				<th>Catégorie</th>
 				<th>Image</th>
 				<th>Action(s)</th>
@@ -64,7 +63,6 @@
 				<td th:text=${a.brand}></td>
 				<td th:text="${a.description}"></td>
 				<td th:text="${a.price}"></td>
-				<td th:text="${a.quantity}"></td>
 				<td th:text="${a.category.name}"></td>
 				<td><img class="pictureArticles" style="width: 50px;"
 					alt="image" src="../static/images/+${a.image}" 

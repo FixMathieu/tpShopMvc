@@ -16,6 +16,7 @@ import org.springframework.stereotype.Service;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
 import fr.fms.dao.CommandeRepository;
+import fr.fms.dao.CustomerRepository;
 import fr.fms.dao.DetailsRepository;
 import fr.fms.dao.RoleRepository;
 import fr.fms.dao.UserRepository;
@@ -29,8 +30,10 @@ import fr.fms.entities.User;
 
 @Service
 public class IBusinessImpl implements IBusiness{
-	@Autowired
-	public static HashMap<Long, Integer> cart = new HashMap<Long, Integer>();
+
+	public HashMap<Long, Integer> cart;
+	
+	public User userCurrent;
 	
 	@Autowired
 	public ArticleRepository articleRepository;
@@ -49,9 +52,16 @@ public class IBusinessImpl implements IBusiness{
 
 	@Autowired
 	public RoleRepository roleRepository;
-	@Autowired
-	public static User userCurrent;
 	
+	@Autowired
+	public CustomerRepository customerRepository;
+
+	
+	public IBusinessImpl() {
+		this.cart = new HashMap<Long, Integer>();
+		this.userCurrent = null;
+	}
+
 	
 	public void setUserCurrent(User user) {
 		userCurrent=user;
@@ -202,5 +212,13 @@ public class IBusinessImpl implements IBusiness{
 			totalAmount += article.getPrice()*entry.getValue();
 		}
 		return totalAmount;
+	}
+	
+	public Customer saveCustomer(Customer customer) {
+		return customerRepository.save(customer);
+	}
+	
+	public String great() {
+		return "Hello World";
 	}
 }
