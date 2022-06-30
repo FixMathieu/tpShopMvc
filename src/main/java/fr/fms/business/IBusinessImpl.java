@@ -27,113 +27,116 @@ import fr.fms.entities.Customer;
 import fr.fms.entities.Details;
 import fr.fms.entities.User;
 
-
 @Service
-public class IBusinessImpl implements IBusiness{
+public class IBusinessImpl implements IBusiness {
 
 	public HashMap<Long, Integer> cart;
-	
+
 	public User userCurrent;
-	
+
 	@Autowired
 	public ArticleRepository articleRepository;
-	
+
 	@Autowired
 	public CategoryRepository categoryRepository;
-	
+
 	@Autowired
 	public UserRepository userRepository;
-	
+
 	@Autowired
 	public CommandeRepository commandeRepository;
-	
+
 	@Autowired
 	public DetailsRepository detailsRepository;
 
 	@Autowired
 	public RoleRepository roleRepository;
-	
+
 	@Autowired
 	public CustomerRepository customerRepository;
 
-	
 	public IBusinessImpl() {
 		this.cart = new HashMap<Long, Integer>();
 		this.userCurrent = null;
 	}
 
-	
 	public void setUserCurrent(User user) {
-		userCurrent=user;
+		userCurrent = user;
 	}
+
 	public User getUserCurrent() {
 		return userCurrent;
 	}
+
 	@Override
 	@PostConstruct
 	public List<Article> getAllArticles() {
 		return articleRepository.findAll();
 	}
-	
-    @Override
-    public void createArticle(String brand,String description, double price,int quantity,Category category, String image) {
-        articleRepository.save(new Article(brand,description,price,quantity,category, image));
-    }
-	
+
+	@Override
+	public void createArticle(String brand, String description, double price, int quantity, Category category,
+			String image) {
+		articleRepository.save(new Article(brand, description, price, quantity, category, image));
+	}
+
 	@Override
 	public void deleteArticleById(Long id) {
 		articleRepository.deleteById(id);
 	}
-	
-    @Override
-    public void updateArticle(Long id, String brand, String description, double price, int quantity, String catName, String image) {
-        articleRepository.save(new Article(id,brand,description,price,quantity,categoryRepository.findByName(catName), image));
-    }
-	
+
 	@Override
-	public List<Category> getAllCategories(){
+	public void updateArticle(Long id, String brand, String description, double price, int quantity, String catName,
+			String image) {
+		articleRepository.save(
+				new Article(id, brand, description, price, quantity, categoryRepository.findByName(catName), image));
+	}
+
+	@Override
+	public List<Category> getAllCategories() {
 		return categoryRepository.findAll();
 	}
-	
+
 	@Override
-	public List<User> getAllUsers(){
+	public List<User> getAllUsers() {
 		return userRepository.findAll();
 	}
-	
+
 	@Override
 	public void createCategory(String name) {
 		categoryRepository.save(new Category(name));
 	}
-	
+
 	@Override
 	public void deleteCategoryById(Long id) {
 		categoryRepository.deleteById(id);
 	}
-	
+
 	@Override
 	public void updateCategory(Long id, String name) {
-		categoryRepository.save(new Category(id,name));
+		categoryRepository.save(new Category(id, name));
 	}
-	
+
 	@Override
 	public Page<Article> getArticlesPages(Pageable pageable) throws Exception {
 		return articleRepository.findAll(pageable);
 	}
-	
+
 	/**
 	 * Ajoute un article au panier via l'ID de l'article
+	 * 
 	 * @param id de l'article à ajouter
 	 */
 	public void addToCart(Long id) {
 		Authentication authentified = SecurityContextHolder.getContext().getAuthentication();
 		System.out.println(authentified);
-		if(cart.get(id) != null) {
-		cart.put(id, cart.get(id)+1);
-		}else {
+		if (cart.get(id) != null) {
+			cart.put(id, cart.get(id) + 1);
+		} else {
 			cart.put(id, 1);
 		}
 	}
-	
+
 //	public void userCurrentId(String userName) {
 //	String userNameAuth= SecurityContextHolder.getContext().getAuthentication().getName();
 ////	String userNameBdd = userRepository.findByUsername(userName);
@@ -141,46 +144,45 @@ public class IBusinessImpl implements IBusiness{
 //		
 //	}
 	public User userCurrent() {
-		String userNameAuth= SecurityContextHolder.getContext().getAuthentication().getName();
+		String userNameAuth = SecurityContextHolder.getContext().getAuthentication().getName();
 		User userNameBdd = userRepository.findByUsername(userNameAuth).get(0);
 		return userNameBdd;
 	}
-	
+
 	/**
 	 * Retire un article au panier via l'ID de l'article
+	 * 
 	 * @param id de l'article à retirer
 	 */
 	public void removeFromCart(Long id) {
-		if(cart.get(id)>1) {
-			cart.put(id, cart.get(id)-1);
-		}else if(cart.get(id)==1){
+		if (cart.get(id) > 1) {
+			cart.put(id, cart.get(id) - 1);
+		} else if (cart.get(id) == 1) {
 			cart.remove(id);
 		}
 	}
-	
+
 	/**
 	 * Renvoie le contenu du panier.
 	 */
 	public HashMap<Long, Integer> getCart() {
 		return cart;
 	}
-	
+
 	/**
 	 * Enregistre la commande en base et vide le panier
 	 */
 	public Commande placeCommande(Customer customer) {
-		
+
 //		cart.forEach((idArticle,quantity)-> 
 //		detailsRepository.save(new Details(null, idArticle,price, quantity)));
 		// Details details = new Details();
-		
-		
+
 		Commande commande = new Commande();
 		commandeRepository.save(commande);
 		double totalAmount = 0;
-		
-		
-		for(Entry<Long, Integer> entry : cart.entrySet()){		
+
+		for (Entry<Long, Integer> entry : cart.entrySet()) {
 			Article article = articleRepository.findById(entry.getKey()).get();
 			Details details = new Details();
 			details.setPrice(article.getPrice());
@@ -191,33 +193,33 @@ public class IBusinessImpl implements IBusiness{
 //			double price = article.getPrice();
 //			int quantity = entry.getValue();
 			detailsRepository.save(details);
-			double detailAmount = article.getPrice()*entry.getValue();
-			totalAmount+=detailAmount;
+			double detailAmount = article.getPrice() * entry.getValue();
+			totalAmount += detailAmount;
 		}
 		commande.setDate(new Date());
 		commande.setTotalAmount(totalAmount);
 		commande.setUser(userCurrent());
 		commande.setCustomer(customer);
-		 commandeRepository.save(commande);
-		 cart.clear();
-		 return commande;
-		
+		commandeRepository.save(commande);
+		cart.clear();
+		return commande;
+
 	}
-	
+
 	public double getTotalAmount() {
-		
-		double totalAmount=0;
-		for(Entry<Long, Integer> entry : cart.entrySet()){	
+
+		double totalAmount = 0;
+		for (Entry<Long, Integer> entry : cart.entrySet()) {
 			Article article = articleRepository.findById(entry.getKey()).get();
-			totalAmount += article.getPrice()*entry.getValue();
+			totalAmount += article.getPrice() * entry.getValue();
 		}
 		return totalAmount;
 	}
-	
+
 	public Customer saveCustomer(Customer customer) {
 		return customerRepository.save(customer);
 	}
-	
+
 	public String great() {
 		return "Hello World";
 	}

@@ -59,15 +59,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		   http.formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index").permitAll();
+		   http.formLogin().loginPage("/login").loginProcessingUrl("/login").defaultSuccessUrl("/index").failureUrl("/login?error=true").permitAll();
 
 //		http.formLogin();												//   --------------------------> page de login generée
 	
 	// Gestion des accès
 			
 	    http.authorizeRequests()
-			.antMatchers("myOrder","/commande","/delete","/save","/edit").hasRole("ADMIN")
-			.antMatchers("myOrder","/commande").hasRole("USER")
+			.antMatchers("/myOrder","/commande","/delete","/save","/edit","/article").hasRole("ADMIN")
+			.antMatchers("/myOrder","/commande").hasRole("USER")
 			.anyRequest().permitAll();
 		  
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée

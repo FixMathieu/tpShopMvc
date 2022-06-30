@@ -15,20 +15,21 @@
 background-position: center center;
 background-attachment: fixed;
 background-size: cover;">
-	<nav class="navbar navbar-primary" style="background-color: rgba(0, 0, 0, 0.5)">
+	<nav class="navbar navbar-primary" style="background-color: rgb(0, 0, 0, 0.5)">
 		<div class="container-fluid">
 			<div class="navbar-header">
-			<a class="navbar-brand " href="#">PignOnLine</a>
+			<span class="navbar-brand " style="color:  rgba(85, 249, 236)" >PignOnLine</span>
 			</div>
 			<ul class="nav navbar-nav">
 				<li class="active"><a th:href="@{/index}">HomePage</a></li>
 				<li><a th:href="@{/articles}"> Articles List</a></li>
 				<li><a th:href="@{/cart}">See cart</a></li>	
-				<li><a th:href="@{/myOrder}" sec:authorize="isAuthenticated()"> see my order</a></li>
+				<li><a th:href="@{/myOrder}" sec:authorize="isAuthenticated()"> See my order</a></li>
 			</ul>
 		
 			<ul class="nav navbar-nav pull-right">
-			<li><a th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')"> Add Article</a></li>
+			<li><a id="btnAddArticle" class="btn btn-danger" th:href="@{/backup}" sec:authorize="hasRole('ROLE_ADMIN')"style="color:white"> BackUp Bdd</a></li>
+			<li><a id="btnAddArticle" class="btn btn-success" th:href="@{/article}" sec:authorize="hasRole('ROLE_ADMIN')"style="color:white"> Add Article</a></li>
 			<li><a  th:href="@{/login}" sec:authorize="!isAuthenticated()">Login</a></li>
 			<li class="authName" style="color:white" sec:authorize="isAuthenticated()">Bonjour :</li>
 			<li class="authName" style="color:white"  sec:authorize="isAuthenticated()" th:text="${auth}"></li>
