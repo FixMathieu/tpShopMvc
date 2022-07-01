@@ -9,4 +9,5 @@ import fr.fms.entities.Details;
 
 public interface DetailsRepository extends JpaRepository<Details, Long>{
 	public List<Details> findByCommandeId(long commandeId);
+	public void deleteByArticle_id(long articleId);
 }

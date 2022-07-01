@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
@@ -25,7 +26,9 @@ import fr.fms.entities.Category;
 import fr.fms.entities.Commande;
 import fr.fms.entities.Customer;
 import fr.fms.entities.Details;
+import fr.fms.entities.Role;
 import fr.fms.entities.User;
+import fr.fms.security.SecurityConfig;
 
 @Service
 public class IBusinessImpl implements IBusiness {
@@ -35,25 +38,28 @@ public class IBusinessImpl implements IBusiness {
 	public User userCurrent;
 
 	@Autowired
-	public ArticleRepository articleRepository;
+	ArticleRepository articleRepository;
 
 	@Autowired
-	public CategoryRepository categoryRepository;
+	CategoryRepository categoryRepository;
 
 	@Autowired
-	public UserRepository userRepository;
+	UserRepository userRepository;
 
 	@Autowired
-	public CommandeRepository commandeRepository;
+	CommandeRepository commandeRepository;
 
 	@Autowired
-	public DetailsRepository detailsRepository;
+	DetailsRepository detailsRepository;
 
 	@Autowired
-	public RoleRepository roleRepository;
+	RoleRepository roleRepository;
 
 	@Autowired
-	public CustomerRepository customerRepository;
+	CustomerRepository customerRepository;
+	
+	@Autowired
+	SecurityConfig securityConfig;
 
 	public IBusinessImpl() {
 		this.cart = new HashMap<Long, Integer>();
@@ -81,7 +87,9 @@ public class IBusinessImpl implements IBusiness {
 	}
 
 	@Override
+	@Transactional
 	public void deleteArticleById(Long id) {
+		detailsRepository.deleteByArticle_id(id);
 		articleRepository.deleteById(id);
 	}
 
@@ -222,5 +230,65 @@ public class IBusinessImpl implements IBusiness {
 
 	public String great() {
 		return "Hello World";
+	}
+	
+
+	
+	public void generateValues() {
+		
+		detailsRepository.deleteAll();
+		articleRepository.deleteAll();
+		categoryRepository.deleteAll();
+		commandeRepository.deleteAll();
+		customerRepository.deleteAll();
+		userRepository.deleteAll();
+		roleRepository.deleteAll();
+		
+		Category smartphone = categoryRepository.save(new Category("Smartphone"));
+		Category pc = categoryRepository.save(new Category("Ordinateur"));
+		Category tablet = categoryRepository.save(new Category("Tablette"));
+		Category printer = categoryRepository.save(new Category("Imprimante"));
+		Category camera = categoryRepository.save(new Category("Camera"));
+		Category tv = categoryRepository.save(new Category("TV"));
+
+		articleRepository.save(new Article("S8", "Samsung", 250, 1, smartphone, "samsung.jpg"));
+		articleRepository.save(new Article("S9", "Samsung", 300, 1, smartphone, "samsung.jpg"));
+		articleRepository.save(new Article("iPhone 10", "Apple", 500, 1, smartphone, "iphone.jpg"));
+		articleRepository.save(new Article("MI11", "Xiaomi", 100, 1, smartphone, "xiaomi.jpg"));
+		articleRepository.save(new Article("9 Pro", "OnePlus", 200, 1, smartphone, "oneplus.jpg"));
+		articleRepository.save(new Article("Pixel 5", "Google", 350, 1, smartphone, "googleSp.jpg"));
+		articleRepository.save(new Article("F3", "Poco", 150, 1, smartphone, "poco.jpg"));
+
+		articleRepository.save(new Article("810", "Dell", 550, 1, pc, "dellpc.jpg"));
+		articleRepository.save(new Article("F756", "Asus", 600, 1, pc, "asuspc.jpg"));
+		articleRepository.save(new Article("E80", "Asus", 700, 1, pc, "asuspc.jpg"));
+		articleRepository.save(new Article("Pro", "MacBook", 1000, 1, pc, "macbook.jpg"));
+		articleRepository.save(new Article("Air", "MacBook", 1200, 1, pc, "macbook.jpg"));
+		articleRepository.save(new Article("XL 5", "IPad", 300, 1, tablet, "ipad.jpg"));
+		articleRepository.save(new Article("XL 7", "IPad", 500, 1, tablet, "ipad.jpg"));
+
+		articleRepository.save(new Article("MG30", "Canon", 50, 1, printer, "canon-mg30.jpg"));
+		articleRepository.save(new Article("MG50", "Canon", 60, 1, printer, "canon-mg50.jpg"));
+		articleRepository.save(new Article("OfficeJet 6950", "HP", 50, 1, printer, "hp-6950.jpg"));
+		articleRepository.save(new Article("WF 2830", "Epson", 100, 1, printer, "wf-2830.jpg"));
+
+		articleRepository.save(new Article("7", "GoPro", 150, 1, camera, "gopro-7.jpg"));
+		articleRepository.save(new Article("10", "GoPro", 200, 1, camera, "gopro-10.jpg"));
+		articleRepository.save(new Article("HT", "Panasonic", 1500, 1, tv, "panasonic.jpg"));
+		articleRepository.save(new Article("L43", "Philips", 450, 1, tv, "philips.jpg"));
+
+		userRepository
+				.save(new User(null, "Mathieu", securityConfig.encodePassword("fms2022"), "ADMIN", true, null));
+		userRepository
+				.save(new User(null, "Mathieu", securityConfig.encodePassword("fms2022"), "USER", true, null));
+		userRepository
+				.save(new User(null, "Tristan", securityConfig.encodePassword("fms2022"), "USER", true, null));
+		userRepository
+				.save(new User(null, "Martial", securityConfig.encodePassword("fms2022"), "USER", true, null));
+		userRepository
+				.save(new User(null, "Eric", securityConfig.encodePassword("fms2022"), "USER", true, null));
+
+		roleRepository.save(new Role(null, "USER"));
+		roleRepository.save(new Role(null, "ADMIN"));
 	}
 }
