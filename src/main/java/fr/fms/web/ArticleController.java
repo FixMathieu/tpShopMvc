@@ -54,7 +54,8 @@ public class ArticleController {
 	@Autowired
 	CommandeRepository commandeRepository;
 
-
+	
+	
 	@GetMapping("/index")
 	public String index(Model model) {
 		nameAuth(model);
@@ -65,12 +66,13 @@ public class ArticleController {
 	}
 
 	@GetMapping("/cart")
-	public String cart(Model model) {
+	public String cart(Model model, @RequestParam(name = "flag", defaultValue = "1") int flag) {
+		
 		nameAuth(model);
+		
 		List<Article> articles = articleRepository.findAll();
 		List<Article> articlesInCart = articles.stream()
 				.filter(article -> businessImpl.getCart().get(article.getId()) != null).collect(Collectors.toList());
-
 		model.addAttribute("quantities", businessImpl.getCart());
 		model.addAttribute("listArticle", articlesInCart);
 		System.out.println(businessImpl.getTotalAmount());
@@ -186,6 +188,10 @@ public class ArticleController {
 	@GetMapping("/403")
 	public String refused() {
 		return "403";
+	}
+	@GetMapping("/404")
+	public String notFound() {
+		return "404";
 	}
 
 	@PostMapping("/submitCustomer")

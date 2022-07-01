@@ -14,6 +14,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 
 import javax.servlet.ServletException;
 import javax.sql.DataSource;
@@ -69,7 +70,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.antMatchers("/myOrder","/commande","/delete","/save","/edit","/article").hasRole("ADMIN")
 			.antMatchers("/myOrder","/commande").hasRole("USER")
 			.anyRequest().permitAll();
-		  
+	   
 		http.exceptionHandling().accessDeniedPage("/403");	//au cas ou un utilisateur tente d'accéder à une page non authorisée
 		
 		

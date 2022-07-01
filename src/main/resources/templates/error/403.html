@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://tymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="layout">
+<head>
+
+<link rel="stylesheet" href="../../static/css/bootstrap.min.css"
+	th:href="@{css/bootstrap.min.css}">
+		<link rel="stylesheet" href="../../static/css/styles.css"
+	th:href="@{css/styles.css}">
+<meta charset="utf-8">
+<title>Forbidden Error</title>
+</head>
+
+<body>
+
+	<div layout:fragment="content">
+		<div class="container">
+
+			<div class="error">
+				<h2 style="color: white">You have no rights !</h2>
+			</div>
+
+			<div class="error">
+
+				<img class="er-picture403" alt="err403" src="../static/images/403.PNG"
+					th:src="@{images/403.PNG}">
+			</div>
+
+
+
+
+		</div>
+
+	</div>
+
+</body>
+
+</html>

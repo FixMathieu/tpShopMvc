@@ -7,6 +7,10 @@ body {
 	margin: 0;
 	padding: 0;
 }
+.error{
+	display:flex;
+	justify-content:center;
+}
 
 .title {
 	color: rgba(0, 0, 0, 0.5);
@@ -18,6 +22,7 @@ body {
 	display:flex;
 	justify-content:center;
 	padding-top:50px;
+
 	background-image: url('../images/boutique.jpg');
 	background-repeat: no-repeat;
 	background-position: center;
@@ -25,6 +30,9 @@ body {
 	height:570px;
 	width: 100%;
 	
+}
+#titlePignon{
+	padding-left:5px;
 }
 .titleNameFooter{
 	display:flex;
@@ -39,9 +47,14 @@ body {
 	margin-right:5px;
 }
 
-.er-picture {
-	width: 50%;
-	height: 50%;
+.er-picture404 {
+	padding-top:80px;
+	width: 100%;
+	height: 100%;
+}
+.er-picture403 {
+	width: 75%;
+	height: 75%;
 }
 
 .category {
