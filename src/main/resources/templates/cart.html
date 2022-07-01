@@ -4,7 +4,7 @@
 	layout:decorate="layout">
 <head>
 <meta charset="UTF-8">
-<title>Panier</title>
+<title>Cart</title>
 <link rel="stylesheet" href="../static/css/bootstrap.min.css"
 	th:href="@{css/bootstrap.min.css}">
 </head>
@@ -60,6 +60,13 @@
 
 			</div>
 
+		</th:block>
+		<th:block th:if="!${price}">
+			<div class="container">
+				<div class="panel panel-primary">
+					<div class="panel-heading">Your cart is empty, add some articles!</div>
+				</div>
+			</div>
 		</th:block>
 	</div>
 </body>
