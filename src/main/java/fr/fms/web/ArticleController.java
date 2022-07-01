@@ -74,6 +74,8 @@ public class ArticleController {
 
 		model.addAttribute("quantities", businessImpl.getCart());
 		model.addAttribute("listArticle", articlesInCart);
+		System.out.println(businessImpl.getTotalAmount());
+		model.addAttribute("price",businessImpl.getTotalAmount());
 		return "cart";
 	}
 
