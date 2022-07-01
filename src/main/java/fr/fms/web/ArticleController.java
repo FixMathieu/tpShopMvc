@@ -235,9 +235,14 @@ public class ArticleController {
 		return "myOrder";
 	}
 
+//	@RequestMapping(value = "/")
+//	public String index() {
+//		return "index";
+//	}
+	
 	@RequestMapping(value = "/")
-	public String index() {
-		return "index";
+	public @ResponseBody String home() {
+		return "Hello";
 	}
 
 	@RequestMapping("/greating")

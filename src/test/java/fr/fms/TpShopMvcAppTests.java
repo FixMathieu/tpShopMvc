@@ -1,22 +1,9 @@
 package fr.fms;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.Assert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
-import java.text.MessageFormat;
-import java.time.Duration;
-import java.time.Instant;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Timeout;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
@@ -24,12 +11,15 @@ import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase.Replace;
 
-import fr.fms.business.IBusinessImpl;
 import fr.fms.dao.ArticleRepository;
 import fr.fms.dao.CategoryRepository;
+import fr.fms.dao.CommandeRepository;
+import fr.fms.dao.UserRepository;
 import fr.fms.entities.Article;
 import fr.fms.entities.Category;
+import fr.fms.entities.Commande;
 import fr.fms.entities.Customer;
+import fr.fms.entities.User;
 
 @RunWith(SpringRunner.class)
 //@ContextConfiguration(classes=TpShopMvcApp.class)
@@ -45,6 +35,12 @@ class TpShopMvcAppTests {
 	
 	@Autowired
 	CategoryRepository categoryRepository;
+	
+	@Autowired
+	UserRepository userRepository;
+	
+	@Autowired
+	CommandeRepository commandeRepository;
 
 //	private static Instant startedAt;
 	
@@ -122,5 +118,37 @@ class TpShopMvcAppTests {
 	void should_find_one_article() {
 		Iterable<Article> articles = articleRepository.findAll();
 		assertThat(articles).isNotEmpty();
+	}
+	
+	@Test
+	void test_add_category() {
+        Category category = categoryRepository.save(new Category(null,"category",null));           
+
+        assertEquals("category",category.getName());
+	}
+	
+	@Test
+	void should_find_one_category() {
+		Iterable<Category> categories = categoryRepository.findAll();
+		assertThat(categories).isNotEmpty();
+	}
+	
+	@Test
+	void test_add_user() {
+		User user = userRepository.save(new User(null,"Walton","pwd","USER",false, null));
+		
+		assertEquals("Walton",user.getUsername());
+	}
+	
+	@Test
+	void should_find_one_user() {
+		Iterable<User> users = userRepository.findAll();
+		assertThat(users).isNotEmpty();
+	}
+	
+	@Test
+	void test_commande() {
+		Commande commande = commandeRepository.save(new Commande(null,null, 0,new Customer(null,"Baker Street","detective@mail.com","Sherlock","Holmes",0),null,new User(null,"Walton","pwd","USER",false, null)));
+		
 	}
 }
